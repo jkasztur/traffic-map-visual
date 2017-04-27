@@ -5,5 +5,6 @@ Authors:
 
 - Róbert Ďuriančík  
 - Matej Sojak  
-- Jan Kasztura  
+- Jan Kasztura
+- Kristýna Pokorná
 
