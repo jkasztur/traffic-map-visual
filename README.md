@@ -1,5 +1,6 @@
 # traffic-map-visual
 Visualization of traffic information
 
-• Róbert Ďuriančík
-• Matej Sojak
+Authors:  
+• Róbert Ďuriančík  
+• Matej Sojak  
