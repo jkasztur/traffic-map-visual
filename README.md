@@ -2,3 +2,4 @@
 Visualization of traffic information
 
 • Róbert Ďuriančík
+• Matej Sojak
