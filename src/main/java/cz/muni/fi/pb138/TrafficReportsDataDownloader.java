@@ -2,7 +2,7 @@ package cz.muni.fi.pb138;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.w3c.dom.Document;
+import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -20,12 +20,12 @@ public class TrafficReportsDataDownloader {
             "http://aplikace.policie.cz/dopravni-informace/GetFile.aspx";
     private final static Logger log = LoggerFactory.getLogger(TrafficReportsDataDownloader.class);
 
-    public static Document downloadData() {
+    public static NodeList downloadData() {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
 
-            return builder.parse(TRAFFIC_REPORTS_DATA_URL);
+            return builder.parse(TRAFFIC_REPORTS_DATA_URL).getElementsByTagName("MJD");
         } catch (ParserConfigurationException ex) {
             log.error("ParserConfigurationException: " + ex.getMessage());
         } catch (IOException ex) {
