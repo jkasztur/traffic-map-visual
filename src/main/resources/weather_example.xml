@@ -1,0 +1,40 @@
+<weather_root>
+	<dt>1493751600</dt>
+	<coord>
+		<lon>16.6</lon>
+		<lat>49.21</lat>
+	</coord>
+	<visibility>10000</visibility>
+	<weather>
+		<icon>01n</icon>
+		<description>clear sky</description>
+		<main>Clear</main>
+		<id>800</id>
+	</weather>
+	<name>Veveří</name>
+	<cod>200</cod>
+	<main>
+		<temp>55.26</temp>
+		<temp_min>53.6</temp_min>
+		<humidity>54</humidity>
+		<pressure>1018</pressure>
+		<temp_max>57.2</temp_max>
+	</main>
+	<clouds>
+		<all>0</all>
+	</clouds>
+	<id>6639863</id>
+	<sys>
+		<country>CZ</country>
+		<sunrise>1493695745</sunrise>
+		<sunset>1493748770</sunset>
+		<id>5899</id>
+		<type>1</type>
+		<message>0.0022</message>
+	</sys>
+	<base>stations</base>
+	<wind>
+		<deg>110</deg>
+		<speed>4.7</speed>
+	</wind>
+</weather_root>
