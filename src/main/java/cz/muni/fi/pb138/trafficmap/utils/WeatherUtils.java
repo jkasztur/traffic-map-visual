@@ -1,5 +1,7 @@
 package cz.muni.fi.pb138.trafficmap.utils;
 
+import net.aksingh.owmjapis.CurrentWeather;
+import net.aksingh.owmjapis.OpenWeatherMap;
 import org.json.JSONObject;
 import org.json.XML;
 import org.slf4j.Logger;
@@ -11,12 +13,8 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-
 import java.io.IOException;
 import java.io.StringReader;
-
-import net.aksingh.owmjapis.CurrentWeather;
-import net.aksingh.owmjapis.OpenWeatherMap;
 
 /**
  * Uses http://openweathermap.org/ API to download current weather information.
@@ -24,7 +22,7 @@ import net.aksingh.owmjapis.OpenWeatherMap;
 public class WeatherUtils {
 
 	private static final String WEATHER_API_KEY = "8797b4d7c4f89c3decc803862f4574eb";
-	private static final OpenWeatherMap owm = new OpenWeatherMap(WEATHER_API_KEY);
+	private static final OpenWeatherMap owm = new OpenWeatherMap(OpenWeatherMap.Units.METRIC, WEATHER_API_KEY);
 
 	private final static Logger log = LoggerFactory.getLogger(WeatherUtils.class);
 
