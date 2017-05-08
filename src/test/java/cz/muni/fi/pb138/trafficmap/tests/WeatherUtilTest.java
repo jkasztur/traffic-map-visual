@@ -23,7 +23,7 @@ public class WeatherUtilTest {
 
 	@Before
 	public void getData() throws ParserConfigurationException {
-		doc = WeatherUtils.getWeatherAtLocation(LONGITUDE, LATITUDE);
+		doc = WeatherUtils.getWeatherAtLocationXml(LONGITUDE, LATITUDE);
 	}
 
 	@Test
