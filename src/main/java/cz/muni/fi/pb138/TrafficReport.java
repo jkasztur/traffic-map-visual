@@ -1,5 +1,7 @@
 package cz.muni.fi.pb138;
 
+import net.aksingh.owmjapis.CurrentWeather;
+
 import java.time.ZonedDateTime;
 
 /**
@@ -8,7 +10,7 @@ import java.time.ZonedDateTime;
 public class TrafficReport {
 
     private String message;
-    private Weather localWeather;
+    private CurrentWeather localWeather;
     private ZonedDateTime activeFrom;
     private ZonedDateTime activeTo;
     private String region;
@@ -24,11 +26,11 @@ public class TrafficReport {
         this.message = message;
     }
 
-    public Weather getLocalWeather() {
+    public CurrentWeather getLocalWeather() {
         return localWeather;
     }
 
-    public void setLocalWeather(Weather localWeather) {
+    public void setLocalWeather(CurrentWeather localWeather) {
         this.localWeather = localWeather;
     }
 
@@ -84,7 +86,7 @@ public class TrafficReport {
     public String toString() {
         return "TrafficReport{" +
                 "message='" + message + '\'' +
-                ", localWeather=" + localWeather +
+                ", localWeather=" + localWeather.getBaseStation() + localWeather.getRawResponse() +
                 ", activeFrom=" + activeFrom +
                 ", activeTo=" + activeTo +
                 ", region='" + region + '\'' +

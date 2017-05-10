@@ -1,14 +1,13 @@
 package cz.muni.fi.pb138;
 
 import cz.muni.fi.pb138.trafficmap.utils.WeatherUtils;
+import net.aksingh.owmjapis.CurrentWeather;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
@@ -37,7 +36,7 @@ public class TrafficReportsBuilder {
                     TrafficReport report = new TrafficReport();
                     GpsCoords start = getStartCoord(reportElement, xPath);
                     GpsCoords end = getEndCoord(reportElement, xPath);
-                    Weather localWeather = getWeatherFromCoords(start, xPath);
+                    CurrentWeather localWeather = WeatherUtils.getWeatherAtLocationObject((float) start.getLongitude(), (float) start.getLatitude());
                     String message = getMessage(reportElement, xPath);
                     ZonedDateTime from = getActiveFrom(reportElement, xPath);
                     ZonedDateTime to = getActiveTo(reportElement, xPath);
@@ -52,8 +51,6 @@ public class TrafficReportsBuilder {
             }
         } catch (XPathExpressionException ex) {
             log.error("XPathExpressionException: " + ex.getMessage());
-        } catch (ParserConfigurationException ex) {
-            log.error("ParserConfigurationException: " + ex.getMessage());
         }
         return reports;
     }
@@ -106,9 +103,9 @@ public class TrafficReportsBuilder {
         return value;
     }
 
-    private static Weather getWeatherFromCoords(GpsCoords coords, XPath xPath) throws ParserConfigurationException, XPathExpressionException {
+    /*private static Weather getWeatherFromCoords(GpsCoords coords, XPath xPath) throws ParserConfigurationException, XPathExpressionException {
         Weather localWeather = new Weather();
-        Document weatherDoc = WeatherUtils.getWeatherAtLocation((float) coords.getLongitude(), (float) coords.getLatitude());
+        CurrentWeather weatherDoc = WeatherUtils.getWeatherAtLocation((float) coords.getLongitude(), (float) coords.getLatitude());
         String locXpath = "//name/text()";
         String tempXpath = "//temp/text()";
         String humidityXpath = "//humidity/text()";
@@ -134,14 +131,14 @@ public class TrafficReportsBuilder {
         localWeather.setWindSpeed(windSpeedEval);
         localWeather.setLocName(locationEval);
         return localWeather;
-    }
+    }*/
 
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
         List<TrafficReport> list = getReports();
         for (TrafficReport item: list
              ) {
             System.out.println(item);
         }
         System.out.println(list.size());
-    }*/
+    }
 }
