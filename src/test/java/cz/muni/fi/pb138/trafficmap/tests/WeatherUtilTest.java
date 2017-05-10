@@ -1,18 +1,16 @@
 package cz.muni.fi.pb138.trafficmap.tests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
+import cz.muni.fi.pb138.trafficmap.utils.WeatherUtils;
 import org.junit.Before;
 import org.junit.Test;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import javax.xml.parsers.ParserConfigurationException;
 
-import cz.muni.fi.pb138.trafficmap.utils.WeatherUtils;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class WeatherUtilTest {
 

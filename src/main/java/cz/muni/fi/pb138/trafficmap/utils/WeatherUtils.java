@@ -1,7 +1,7 @@
 package cz.muni.fi.pb138.trafficmap.utils;
 
-import static net.aksingh.owmjapis.OpenWeatherMap.Units.METRIC;
-
+import net.aksingh.owmjapis.CurrentWeather;
+import net.aksingh.owmjapis.OpenWeatherMap;
 import org.json.JSONObject;
 import org.json.XML;
 import org.slf4j.Logger;
@@ -13,12 +13,10 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-
 import java.io.IOException;
 import java.io.StringReader;
 
-import net.aksingh.owmjapis.CurrentWeather;
-import net.aksingh.owmjapis.OpenWeatherMap;
+import static net.aksingh.owmjapis.OpenWeatherMap.Units.METRIC;
 
 /**
  * Uses http://openweathermap.org/ API to download current weather information.
