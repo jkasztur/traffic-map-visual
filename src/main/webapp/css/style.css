@@ -1,3 +1,23 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer .row {
+    height: 25px;
+}
+
+footer .footer-copyright {
+    height: 10px;
+    margin-top: -20px;
+    margin-bottom: -5px;
+}
+
 .brand-logo {
     margin-left: 2%;
 }

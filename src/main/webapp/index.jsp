@@ -14,24 +14,42 @@
 </head>
 <body>
 
-<nav>
-    <div class="nav-wrapper light-blue">
-        <div class="row">
-            <div class="col s3">
-                <a href="#" class="brand-logo">Traffic Map Visual</a>
+<header>
+    <nav>
+        <div class="nav-wrapper light-blue">
+            <div class="row">
+                <div class="col l3 hide-on-med-and-down">
+                    <a href="#" class="brand-logo">Traffic Map Visual</a>
+                </div>
+                <div class="col s12 l5">
+                    <form>
+                        <div class="input-field">
+                            <input id="search" type="search" placeholder="Search on map..." required>
+                            <label class="label-icon search-icons" for="search"><i
+                                    class="material-icons">search</i></label>
+                            <i class="material-icons search-icons">close</i>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="col s5">
-                <form>
-                    <div class="input-field">
-                        <input id="search" type="search" placeholder="Search on map..." required>
-                        <label class="label-icon search-icons" for="search"><i class="material-icons">search</i></label>
-                        <i class="material-icons search-icons">close</i>
-                    </div>
-                </form>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <div id="map" class="container">
+    </div>
+</main>
+
+<footer class="page-footer light-blue">
+    <div class="row">
+        <div class="footer-copyright">
+            <div class="col s11">
+                <p>&#x24B8; 2017 Copyright</p>
             </div>
         </div>
     </div>
-</nav>
+</footer>
 
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
