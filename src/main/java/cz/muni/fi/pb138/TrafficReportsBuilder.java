@@ -103,42 +103,4 @@ public class TrafficReportsBuilder {
         return value;
     }
 
-    /*private static Weather getWeatherFromCoords(GpsCoords coords, XPath xPath) throws ParserConfigurationException, XPathExpressionException {
-        Weather localWeather = new Weather();
-        CurrentWeather weatherDoc = WeatherUtils.getWeatherAtLocation((float) coords.getLongitude(), (float) coords.getLatitude());
-        String locXpath = "//name/text()";
-        String tempXpath = "//temp/text()";
-        String humidityXpath = "//humidity/text()";
-        String descriptionXpath = "//description/text()";
-        String windXpath = "//wind/speed/text()";
-        String iconXpath = "//icon/text()";
-        String mainDescXpath = "//weather/main/text()";
-        String pressureXpath = "//pressure/text()";
-        double tempEval = (double) xPath.evaluate(tempXpath, weatherDoc, XPathConstants.NUMBER);
-        int humidityEval = ((Double) xPath.evaluate(humidityXpath, weatherDoc, XPathConstants.NUMBER)).intValue();
-        int pressureEval = ((Double) xPath.evaluate(pressureXpath, weatherDoc, XPathConstants.NUMBER)).intValue();
-        double windSpeedEval = (double) xPath.evaluate(windXpath, weatherDoc, XPathConstants.NUMBER);
-        String descEval = (String) xPath.evaluate(descriptionXpath, weatherDoc, XPathConstants.STRING);
-        String iconEval = (String) xPath.evaluate(iconXpath, weatherDoc, XPathConstants.STRING);
-        String locationEval = (String) xPath.evaluate(locXpath, weatherDoc, XPathConstants.STRING);
-        String mainDescEval = (String) xPath.evaluate(mainDescXpath, weatherDoc, XPathConstants.STRING);
-        localWeather.setDescription(descEval);
-        localWeather.setHumidity(humidityEval);
-        localWeather.setIcon(iconEval);
-        localWeather.setMainDescription(mainDescEval);
-        localWeather.setPressure(pressureEval);
-        localWeather.setTemperature(tempEval);
-        localWeather.setWindSpeed(windSpeedEval);
-        localWeather.setLocName(locationEval);
-        return localWeather;
-    }*/
-
-    public static void main(String[] args) {
-        List<TrafficReport> list = getReports();
-        for (TrafficReport item: list
-             ) {
-            System.out.println(item);
-        }
-        System.out.println(list.size());
-    }
 }
