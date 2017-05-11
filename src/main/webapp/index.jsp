@@ -37,7 +37,54 @@
 </header>
 
 <main>
-    <div id="map" class="container">
+    <ul id="slide-out" class="side-nav ">
+        <li>
+            <div id="side-head" class="light-blue side-head" style="padding: 16px; color: white;">
+                <h4>Traffic Report</h4>
+            </div>
+        </li>
+        <li>
+            <div class="side-body" style="padding-left: 32px;">
+                <h5>Description</h5>
+            </div>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <div class="side-body" style="padding-left: 32px;">
+                <h5>Weather</h5>
+            </div>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <div class="side-body" style="padding-left: 32px;">
+                <h5>Statistics</h5>
+            </div>
+        </li>
+    </ul>
+
+    <div id="map">
+        <!-- TODO delete form -->
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="icon_prefix" type="text" class="validate">
+                        <label for="icon_prefix">First Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">phone</i>
+                        <input id="icon_telephone" type="tel" class="validate">
+                        <label for="icon_telephone">Telephone</label>
+                    </div>
+                </div>
+                <button type="submit" data-activates="slide-out" class="button-collapse">Submit</button>
+            </form>
+        </div>
     </div>
 </main>
 
@@ -54,6 +101,7 @@
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
 
 </body>
 </html>

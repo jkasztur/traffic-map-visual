@@ -1,3 +1,4 @@
+
 body {
     display: flex;
     min-height: 100vh;
@@ -30,3 +31,14 @@ footer .footer-copyright {
 .search-icons {
     margin-top: -0.5%;
 }
+
+/*TODO not working*/
+body main ul li div .side-head {
+    padding: 16px;
+    color: white;
+}
+
+body main .side-body {
+    padding: 16px;
+}
+
