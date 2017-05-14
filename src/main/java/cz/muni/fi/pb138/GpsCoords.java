@@ -13,6 +13,11 @@ public class GpsCoords {
         this.longitude = longitude;
     }
 
+    public GpsCoords() {
+        this.latitude = 16.599346;
+        this.longitude = 49.210087;
+    }
+
     public double getLatitude() {
         return latitude;
     }
@@ -35,6 +40,10 @@ public class GpsCoords {
                 "latitude=" + latitude +
                 ", longitude=" + longitude +
                 '}';
+    }
+
+    public String toSimpleString() {
+        return latitude + ", " + longitude;
     }
 
     @Override
