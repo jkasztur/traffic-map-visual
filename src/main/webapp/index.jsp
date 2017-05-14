@@ -11,6 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <title>Traffic Map Visual</title>
+    <script type="text/javascript" src="https://api.mapy.cz/loader.js"></script>
+    <script type="text/javascript">Loader.load();</script>
 </head>
 <body>
 
@@ -66,8 +68,8 @@
         </li>
     </ul>
 
-    <div id="map">
-
+    <div id="map" style="width:100%; height:85%;">
+    </div>
 </main>
 
 <footer class="page-footer light-blue">
@@ -84,6 +86,11 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
-
+<script type="text/javascript">
+		var stred = SMap.Coords.fromWGS84(16.599346, 49.210087);
+		var mapa = new SMap(JAK.gel("map"), stred, 10);
+		mapa.addDefaultLayer(SMap.DEF_BASE).enable();
+		mapa.addDefaultControls();
+	</script>
 </body>
 </html>
