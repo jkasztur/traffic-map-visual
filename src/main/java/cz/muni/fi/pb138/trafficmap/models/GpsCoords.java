@@ -1,4 +1,4 @@
-package cz.muni.fi.pb138;
+package cz.muni.fi.pb138.trafficmap.models;
 
 /**
  * Created by Matej on 4.5.2017.

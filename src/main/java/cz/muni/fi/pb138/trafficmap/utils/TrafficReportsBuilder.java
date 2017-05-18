@@ -1,6 +1,7 @@
-package cz.muni.fi.pb138;
+package cz.muni.fi.pb138.trafficmap.utils;
 
-import cz.muni.fi.pb138.trafficmap.utils.WeatherUtils;
+import cz.muni.fi.pb138.trafficmap.models.GpsCoords;
+import cz.muni.fi.pb138.trafficmap.models.TrafficReport;
 import net.aksingh.owmjapis.CurrentWeather;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +28,7 @@ public class TrafficReportsBuilder {
     private static List<TrafficReport> getReports() {
         List<TrafficReport> reports = new ArrayList<>();
         try {
-            NodeList reportElements = TrafficReportsDataDownloader.downloadData();
+            NodeList reportElements = TrafficReportsDataDownloader.getTrafficReports();
             XPath xPath = XPathFactory.newInstance().newXPath();
             for (int i = 0; i < reportElements.getLength(); i++) {
                 Node reportNode = reportElements.item(i);

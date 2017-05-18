@@ -1,4 +1,4 @@
-package cz.muni.fi.pb138;
+package cz.muni.fi.pb138.trafficmap.utils;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +12,7 @@ import java.io.IOException;
 
 
 /**
- * Created by robert-ntb on 4/30/17.
+ * Downloads actual traffic reports from http://aplikace.policie.cz/dopravni-informace/
  */
 public class TrafficReportsDataDownloader {
 
@@ -20,7 +20,13 @@ public class TrafficReportsDataDownloader {
             "http://aplikace.policie.cz/dopravni-informace/GetFile.aspx";
     private final static Logger log = LoggerFactory.getLogger(TrafficReportsDataDownloader.class);
 
-    public static NodeList downloadData() {
+    /**
+     * Returns NodeList containing nodes with MJD elements.
+     * Example of the MJD element can be found at src/main/resources/mjd_example.xml
+     *
+     * @return NodeList with MJD elements or null in case an error is thrown
+     */
+    public static NodeList getTrafficReports() {
         try {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();

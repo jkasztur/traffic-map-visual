@@ -4,10 +4,9 @@ import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import com.google.maps.errors.ApiException;
 import com.google.maps.model.GeocodingResult;
+import cz.muni.fi.pb138.trafficmap.models.GpsCoords;
 
 import java.io.IOException;
-
-import cz.muni.fi.pb138.GpsCoords;
 
 public class GeocodingUtils {
 
