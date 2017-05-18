@@ -1,5 +1,7 @@
 <html>
 <head>
+    <meta charset="utf-8"/>
+
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
@@ -67,7 +69,7 @@
             </div>
         </li>
     </ul>
-
+    <%--<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>--%>
     <div id="map" style="width:100%; height:85%;">
     </div>
 </main>
@@ -86,11 +88,5 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
 <script type="text/javascript" src="js/script.js"></script>
-<script type="text/javascript">
-		var stred = SMap.Coords.fromWGS84(16.599346, 49.210087);
-		var mapa = new SMap(JAK.gel("map"), stred, 10);
-		mapa.addDefaultLayer(SMap.DEF_BASE).enable();
-		mapa.addDefaultControls();
-	</script>
 </body>
 </html>
