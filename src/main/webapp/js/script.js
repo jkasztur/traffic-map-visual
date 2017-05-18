@@ -23,7 +23,7 @@ function initMap() {
 function addMarker(center) {
     var c = new SMap.Card();
     c.setSize(400, 300);
-    /* Šířka, výška */
+
     c.getHeader().innerHTML = "<h5>Report</h5>";
     c.getBody().innerHTML = "<a href='#' onclick='openSidePanel()'>Open</a>";
 
@@ -34,18 +34,23 @@ function addMarker(center) {
 }
 
 function openSidePanel() {
-    $('#sidePanelButton').sideNav({
+    var $sidePanel = $('#sidePanelButton');
+    var $description = $('#side-panel-desc');
+    var $weather = $('#side-panel-weather');
+    var $statistics = $('#side-panel-stats')
+
+    $sidePanel.sideNav({
         menuWidth: 450,
         draggable: false
     });
 
-    $('#side-panel-desc').empty();
-    $('#side-panel-weather').empty()
-    $('#side-panel-stats').empty();
+    $description.empty();
+    $weather.empty()
+    $statistics.empty();
 
-    $('#side-panel-desc').append("<p>Test description</p>");
-    $('#side-panel-weather').append("<p>Test weather</p>");
-    $('#side-panel-stats').append("<p>Test statistics</p>");
+    $description.append("<p>Test description</p>");
+    $weather.append("<p>Test weather</p>");
+    $statistics.append("<p>Test statistics</p>");
 
-    $('#sidePanelButton').sideNav('show');
+    $sidePanel.sideNav('show');
 }
