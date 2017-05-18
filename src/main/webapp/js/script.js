@@ -39,5 +39,13 @@ function openSidePanel() {
         draggable: false
     });
 
+    $('#side-panel-desc').empty();
+    $('#side-panel-weather').empty()
+    $('#side-panel-stats').empty();
+
+    $('#side-panel-desc').append("<p>Test description</p>");
+    $('#side-panel-weather').append("<p>Test weather</p>");
+    $('#side-panel-stats').append("<p>Test statistics</p>");
+
     $('#sidePanelButton').sideNav('show');
 }

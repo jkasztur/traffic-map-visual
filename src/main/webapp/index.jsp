@@ -50,6 +50,7 @@
         <li>
             <div class="side-body" style="padding-left: 32px;">
                 <h5>Description</h5>
+                <div id="side-panel-desc"></div>
             </div>
         </li>
         <li>
@@ -58,6 +59,7 @@
         <li>
             <div class="side-body" style="padding-left: 32px;">
                 <h5>Weather</h5>
+                <div id="side-panel-weather"></div>
             </div>
         </li>
         <li>
@@ -66,6 +68,7 @@
         <li>
             <div class="side-body" style="padding-left: 32px;">
                 <h5>Statistics</h5>
+                <div id="side-panel-stats"></div>
             </div>
         </li>
     </ul>
