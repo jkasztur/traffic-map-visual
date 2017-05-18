@@ -53,6 +53,5 @@ public class WeatherUtilTest {
 		assertTrue(doc.getElementsByTagName("temp_min").getLength() == 1);
 		assertTrue(doc.getElementsByTagName("temp_max").getLength() == 1);
 		assertTrue(doc.getElementsByTagName("humidity").getLength() == 1);
-		assertTrue(doc.getElementsByTagName("description").getLength() > 1);
 	}
 }
