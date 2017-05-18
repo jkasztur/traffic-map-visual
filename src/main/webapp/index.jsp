@@ -69,7 +69,9 @@
             </div>
         </li>
     </ul>
-    <%--<a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>--%>
+    <%-- Button for activating the side panel --%>
+    <button style="display: none;" data-activates="slide-out" id="sidePanelButton">sidePanelButton</button>
+
     <div id="map" style="width:100%; height:85%;">
     </div>
 </main>

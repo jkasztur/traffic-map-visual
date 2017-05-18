@@ -7,12 +7,6 @@ var markerLayer;
 $(document).ready(function () {
     initMap();
     addMarker(map.getCenter());
-
-    // Activate the side menu
-    $(".button-collapse").sideNav({
-        menuWidth: 450,
-        draggable: false
-    });
 });
 
 function initMap() {
@@ -31,9 +25,19 @@ function addMarker(center) {
     c.setSize(400, 300);
     /* Šířka, výška */
     c.getHeader().innerHTML = "<h5>Report</h5>";
+    c.getBody().innerHTML = "<a href='#' onclick='openSidePanel()'>Open</a>";
 
     var options = {};
     var marker = new SMap.Marker(center, "myMarker", options);
     marker.decorate(SMap.Marker.Feature.Card, c);
     markerLayer.addMarker(marker);
+}
+
+function openSidePanel() {
+    $('#sidePanelButton').sideNav({
+        menuWidth: 450,
+        draggable: false
+    });
+
+    $('#sidePanelButton').sideNav('show');
 }
