@@ -1,4 +1,4 @@
-package cz.muni.fi.pb138;
+package cz.muni.fi.pb138.trafficmap.models;
 
 import net.aksingh.owmjapis.CurrentWeather;
 
