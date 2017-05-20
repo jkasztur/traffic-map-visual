@@ -138,6 +138,6 @@ public class TrafficReportsBuilder {
                 Integer.parseInt(partedTime[2]), 0, ZoneId.of(TimeZone.getDefault().getID()));
         return value;
     }
-    
+
 
 }
