@@ -1,5 +1,11 @@
 package cz.muni.fi.pb138.trafficmap.utils;
 
+import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import cz.muni.fi.pb138.trafficmap.models.GpsCoords;
 import cz.muni.fi.pb138.trafficmap.models.TrafficReport;
 import net.aksingh.owmjapis.CurrentWeather;
@@ -13,8 +19,12 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TimeZone;
@@ -25,7 +35,7 @@ import java.util.TimeZone;
 public class TrafficReportsBuilder {
     private final static Logger log = LoggerFactory.getLogger(TrafficReportsBuilder.class);
 
-    private static List<TrafficReport> getReports() {
+    public static List<TrafficReport> getReports() {
         List<TrafficReport> reports = new ArrayList<>();
         try {
             NodeList reportElements = TrafficReportsDataDownloader.getTrafficReports();
@@ -38,6 +48,7 @@ public class TrafficReportsBuilder {
                     GpsCoords start = getStartCoord(reportElement, xPath);
                     GpsCoords end = getEndCoord(reportElement, xPath);
                     CurrentWeather localWeather = WeatherUtils.getWeatherAtLocationObject((float) start.getLongitude(), (float) start.getLatitude());
+                    //localWeather.
                     String message = getMessage(reportElement, xPath);
                     ZonedDateTime from = getActiveFrom(reportElement, xPath);
                     ZonedDateTime to = getActiveTo(reportElement, xPath);
@@ -55,6 +66,30 @@ public class TrafficReportsBuilder {
         }
         return reports;
     }
+
+    public static String getJSONReports() {
+        String result = null;
+        List<TrafficReport> reports = getReports();
+        ObjectMapper mapper = new ObjectMapper();
+        JavaTimeModule javaTimeModule = new JavaTimeModule();
+        SimpleModule sm = new SimpleModule("MyModule", new Version(1, 0, 0, null, null, null));
+        sm.addSerializer(CurrentWeather.class, new WeatherSerializer());
+        mapper.registerModule(sm);
+        // Hack time module to allow 'Z' at the end of string (i.e. javascript json's)
+        javaTimeModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ISO_DATE_TIME));
+        mapper.registerModule(javaTimeModule);
+        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+        StringWriter sw = new StringWriter();
+        try {
+            mapper.writeValue(sw, reports);
+            result = sw.toString();
+        } catch (IOException ex) {
+            log.error("IOException:" + ex.getMessage());
+        }
+
+        return result;
+    }
+
 
     private static GpsCoords getStartCoord(Element elem, XPath xPath) throws XPathExpressionException {
         String xCoordXpath = ".//SBEG/@x";
@@ -103,5 +138,6 @@ public class TrafficReportsBuilder {
                 Integer.parseInt(partedTime[2]), 0, ZoneId.of(TimeZone.getDefault().getID()));
         return value;
     }
+
 
 }
