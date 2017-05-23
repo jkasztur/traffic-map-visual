@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 var map;
+var infoWindow = null;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -22,15 +23,12 @@ function initMap() {
     });
 
     google.maps.event.addListenerOnce(map, 'idle', function () {
+        infoWindow = new google.maps.InfoWindow();
         addMarkers(items);
     });
 }
 
 function addMarker(item) {
-    console.log(item);
-    var infoWindow = new google.maps.InfoWindow({
-        content: item.message
-    });
 
     var marker = new google.maps.Marker({
         position: item.start,
@@ -38,7 +36,16 @@ function addMarker(item) {
         title: "Traffic report"
     });
 
+    var sidePanelButton = document.createElement("a");
+    sidePanelButton.href = "#";
+    sidePanelButton.textContent = "Detail";
+    sidePanelButton.addEventListener('click', function () {
+        openSidePanel(item);
+    });
+
     marker.addListener('click', function () {
+        infoWindow.close();
+        infoWindow.setContent(sidePanelButton);
         infoWindow.open(map, marker);
     });
     // var c = new SMap.Card();
@@ -46,12 +53,7 @@ function addMarker(item) {
     // var center = SMap.Coords.fromWGS84(item.start.longitude, item.start.latitude);
     //
     // c.getHeader().innerHTML = "<h5>" + item.start.longitude + ", " + item.start.latitude + "</h5>";
-    // var sidePanelButton = document.createElement("a");
-    // sidePanelButton.href = "#";
-    // sidePanelButton.textContent = "Open";
-    // sidePanelButton.addEventListener('click', function () {
-    //     openSidePanel(item);
-    // });
+
     // c.getBody().appendChild(sidePanelButton);
     //
     // var options = {};
