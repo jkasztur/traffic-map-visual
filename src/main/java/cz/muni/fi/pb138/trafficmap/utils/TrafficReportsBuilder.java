@@ -47,7 +47,7 @@ public class TrafficReportsBuilder {
                     TrafficReport report = new TrafficReport();
                     GpsCoords start = getStartCoord(reportElement, xPath);
                     GpsCoords end = getEndCoord(reportElement, xPath);
-                    CurrentWeather localWeather = WeatherUtils.getWeatherAtLocationObject((float) start.getLongitude(), (float) start.getLatitude());
+                    CurrentWeather localWeather = WeatherUtils.getWeatherAtLocationObject((float) start.getLng(), (float) start.getLat());
                     //localWeather.
                     String message = getMessage(reportElement, xPath);
                     ZonedDateTime from = getActiveFrom(reportElement, xPath);

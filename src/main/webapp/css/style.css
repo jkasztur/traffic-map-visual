@@ -6,7 +6,7 @@ body {
 }
 
 main {
-    flex: 1 0 auto;
+    flex: 0 0 auto;
 }
 
 footer .row {
@@ -30,6 +30,12 @@ footer .footer-copyright {
 
 .search-icons {
     margin-top: -0.5%;
+}
+
+/*TODO not working*/
+main #map {
+    height: 100%;
+    width: 100%;
 }
 
 /*TODO not working*/

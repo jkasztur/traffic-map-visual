@@ -5,45 +5,45 @@ package cz.muni.fi.pb138.trafficmap.models;
  */
 public class GpsCoords {
 
-    private double latitude;
-    private double longitude;
+    private double lat;
+    private double lng;
 
-    public GpsCoords(double longitude, double latitude) {
-        this.latitude = latitude;
-        this.longitude = longitude;
+    public GpsCoords(double lng, double lat) {
+        this.lat = lat;
+        this.lng = lng;
     }
 
     public GpsCoords() {
-        this.latitude = 16.599346;
-        this.longitude = 49.210087;
+        this.lat = 16.599346;
+        this.lng = 49.210087;
     }
 
-    public double getLatitude() {
-        return latitude;
+    public double getLat() {
+        return lat;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
+    public void setLat(double lat) {
+        this.lat = lat;
     }
 
-    public double getLongitude() {
-        return longitude;
+    public double getLng() {
+        return lng;
     }
 
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
+    public void setLng(double lng) {
+        this.lng = lng;
     }
 
     @Override
     public String toString() {
         return "GpsCoords{" +
-                "latitude=" + latitude +
-                ", longitude=" + longitude +
+                "lat=" + lat +
+                ", lng=" + lng +
                 '}';
     }
 
     public String toSimpleString() {
-        return latitude + ", " + longitude;
+        return lat + ", " + lng;
     }
 
     @Override
@@ -53,17 +53,17 @@ public class GpsCoords {
 
         GpsCoords gpsCoords = (GpsCoords) o;
 
-        if (Double.compare(gpsCoords.latitude, latitude) != 0) return false;
-        return Double.compare(gpsCoords.longitude, longitude) == 0;
+        if (Double.compare(gpsCoords.lat, lat) != 0) return false;
+        return Double.compare(gpsCoords.lng, lng) == 0;
     }
 
     @Override
     public int hashCode() {
         int result;
         long temp;
-        temp = Double.doubleToLongBits(latitude);
+        temp = Double.doubleToLongBits(lat);
         result = (int) (temp ^ (temp >>> 32));
-        temp = Double.doubleToLongBits(longitude);
+        temp = Double.doubleToLongBits(lng);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
     }
