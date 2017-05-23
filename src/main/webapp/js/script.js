@@ -23,7 +23,9 @@ function initMap() {
     });
 
     google.maps.event.addListenerOnce(map, 'idle', function () {
-        infoWindow = new google.maps.InfoWindow();
+        infoWindow = new google.maps.InfoWindow({
+            maxWidth: 300
+        });
         addMarkers(items);
     });
 }
@@ -36,6 +38,12 @@ function addMarker(item) {
         title: "Traffic report"
     });
 
+    var content = document.createElement("div");
+    var p = document.createElement("p");
+    p.textContent = item.message;
+
+    content.appendChild(p);
+
     var sidePanelButton = document.createElement("a");
     sidePanelButton.href = "#";
     sidePanelButton.textContent = "Detail";
@@ -43,23 +51,13 @@ function addMarker(item) {
         openSidePanel(item);
     });
 
+    content.appendChild(sidePanelButton);
+
     marker.addListener('click', function () {
         infoWindow.close();
-        infoWindow.setContent(sidePanelButton);
+        infoWindow.setContent(content);
         infoWindow.open(map, marker);
     });
-    // var c = new SMap.Card();
-    // c.setSize(400, 300);
-    // var center = SMap.Coords.fromWGS84(item.start.longitude, item.start.latitude);
-    //
-    // c.getHeader().innerHTML = "<h5>" + item.start.longitude + ", " + item.start.latitude + "</h5>";
-
-    // c.getBody().appendChild(sidePanelButton);
-    //
-    // var options = {};
-    // var marker = new SMap.Marker(center, "myMarker", options);
-    // marker.decorate(SMap.Marker.Feature.Card, c);
-    // markerLayer.addMarker(marker);
 }
 
 function openSidePanel(item) {
@@ -74,10 +72,10 @@ function openSidePanel(item) {
     });
 
     $description.empty();
-    $weather.empty()
+    $weather.empty();
     $statistics.empty();
 
-    $description.append("<p style='margin: 0'>" + item.message + "</p>");
+    $description.append("<p style='line-height: 126%;'>" + item.message + "</p>");
     $weather.append("<p>Test weather</p>");
     $statistics.append("<p>Test statistics</p>");
 
