@@ -1,5 +1,6 @@
 <%@ page import="cz.muni.fi.pb138.trafficmap.utils.TrafficReportsBuilder" %>
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
@@ -15,6 +16,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
     <title>Traffic Map Visual</title>
+
 </head>
 <body>
 
@@ -43,12 +45,13 @@
 <main>
     <ul id="slide-out" class="side-nav ">
         <li>
-            <div id="side-head" class="light-blue side-head" style="padding: 16px; color: white;">
+            <%--<div id="side-head" class="light-blue side-head" style="padding: 16px; color: white;">--%>
+            <div id="side-head" class="light-blue side-head">
                 <h4>Traffic Report</h4>
             </div>
         </li>
         <li>
-            <div class="side-body" style="padding-left: 32px;">
+            <div class="side-body">
                 <h5>Description</h5>
                 <div id="side-panel-desc"></div>
             </div>
@@ -57,7 +60,7 @@
             <div class="divider"></div>
         </li>
         <li>
-            <div class="side-body" style="padding-left: 32px;">
+            <div class="side-body">
                 <h5>Weather</h5>
                 <div id="side-panel-weather"></div>
             </div>
@@ -66,7 +69,7 @@
             <div class="divider"></div>
         </li>
         <li>
-            <div class="side-body" style="padding-left: 32px;">
+            <div class="side-body">
                 <h5>Statistics</h5>
                 <div id="side-panel-stats"></div>
             </div>
@@ -75,7 +78,7 @@
     <%-- Button for activating the side panel --%>
     <button style="display: none;" data-activates="slide-out" id="sidePanelButton">sidePanelButton</button>
 
-    <div id="map" style="height: 85%; width: 100%"></div>
+    <div id="map"></div>
 
 </main>
 
@@ -99,6 +102,6 @@
     var items = (<%= items %>);
 </script>
 
-
+<%--TODO no internet connection--%>
 </body>
 </html>
