@@ -8,6 +8,10 @@ main {
     flex: 1 0 auto;
 }
 
+#sidePanelButton {
+    display: none;
+}
+
 footer .row {
     height: 25px;
 }
@@ -44,4 +48,24 @@ footer .footer-copyright {
 .side-body {
     padding: 16px;
 }
+
+#info-window a {
+    text-align: right;
+    float: right;
+    font-size: large;
+    padding-bottom: 2%;
+}
+
+#info-window p {
+    font-size: medium;
+}
+
+#side-panel-desc p {
+    line-height: 126%;
+}
+
+#info-window img {
+    float: left;
+}
+
 

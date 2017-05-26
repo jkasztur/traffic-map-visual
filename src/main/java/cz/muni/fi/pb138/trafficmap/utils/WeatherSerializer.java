@@ -21,7 +21,7 @@ public class WeatherSerializer extends JsonSerializer<CurrentWeather> {
         jGen.writeStringField("pressure", String.valueOf(currentWeather.getMainInstance().getPressure()));
         jGen.writeStringField("humidity", String.valueOf(currentWeather.getMainInstance().getHumidity()));
         jGen.writeStringField("windSpeed", String.valueOf(currentWeather.getWindInstance().getWindSpeed()));
-        jGen.writeStringField("windDegress", String.valueOf(currentWeather.getWindInstance().getWindDegree()));
+        jGen.writeStringField("windDegrees", String.valueOf(currentWeather.getWindInstance().getWindDegree()));
         jGen.writeStringField("weatherDesc", currentWeather.getWeatherInstance(0).getWeatherDescription());
         jGen.writeStringField("weatherName", currentWeather.getWeatherInstance(0).getWeatherName());
         jGen.writeStringField("weatherIcon", "http://openweathermap.org/img/w/" + currentWeather.getWeatherInstance(0).getWeatherIconName() + ".png");

@@ -76,7 +76,7 @@
         </li>
     </ul>
     <%-- Button for activating the side panel --%>
-    <button style="display: none;" data-activates="slide-out" id="sidePanelButton">sidePanelButton</button>
+    <button data-activates="slide-out" id="sidePanelButton">sidePanelButton</button>
 
     <div id="map"></div>
 

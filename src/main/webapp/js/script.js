@@ -24,25 +24,37 @@ function initMap() {
 
     google.maps.event.addListenerOnce(map, 'idle', function () {
         infoWindow = new google.maps.InfoWindow({
-            maxWidth: 300
+            maxWidth: 350
         });
         addMarkers(items);
     });
 }
 
 function addMarker(item) {
-
     var marker = new google.maps.Marker({
         position: item.start,
         map: map,
         title: "Traffic report"
     });
 
-    var content = document.createElement("div");
-    var p = document.createElement("p");
-    p.textContent = item.message;
+    var content = createInfoWindowContent(item);
 
-    content.appendChild(p);
+    marker.addListener('click', function () {
+        infoWindow.close();
+        infoWindow.setContent(content);
+        infoWindow.open(map, marker);
+    });
+}
+
+function createInfoWindowContent(item) {
+    var content = document.createElement("div");
+    content.setAttribute("id", "info-window");
+    content.innerHTML =
+        "<h5>Description</h5>" +
+        createDescriptionContent(item) +
+        "<div class='divider'></div>" +
+        "<img src='" + item.localWeather.weatherIcon + "' alt='Icon depicting current weather.'/>" +
+        "<p>" + item.localWeather.currentTemp + " &deg;C</p>";
 
     var sidePanelButton = document.createElement("a");
     sidePanelButton.href = "#";
@@ -53,11 +65,7 @@ function addMarker(item) {
 
     content.appendChild(sidePanelButton);
 
-    marker.addListener('click', function () {
-        infoWindow.close();
-        infoWindow.setContent(content);
-        infoWindow.open(map, marker);
-    });
+    return content;
 }
 
 function openSidePanel(item) {
@@ -75,11 +83,40 @@ function openSidePanel(item) {
     $weather.empty();
     $statistics.empty();
 
-    $description.append("<p style='line-height: 126%;'>" + item.message + "</p>");
-    $weather.append("<p>Test weather</p>");
-    $statistics.append("<p>Test statistics</p>");
+    $description.append(createDescriptionContent(item));
+    $weather.append(createWeatherContent(item));
+    $statistics.append(createStatisticsContent(item));
 
     $sidePanel.sideNav('show');
+}
+
+function createDescriptionContent(item) {
+    var message = item.message.split(";");
+
+    var description = "<p>";
+    for (var i = 0; i < message.length; ++i) {
+        message[i] = message[i].trim();
+        message[i] = message[i].charAt(0).toUpperCase() + message[i].substr(1);
+        if (message[i].charAt(message[i].length - 1) !== '.') {
+            description += message[i] + ". ";
+        }
+
+    }
+    description += "</p>";
+
+    return description;
+}
+
+function createWeatherContent(item) {
+    var weather = " ";
+
+    return weather;
+}
+
+function createStatisticsContent(item) {
+    var statistics = "";
+    // TODO create statistics content
+    return statistics;
 }
 
 function addMarkers(items) {
