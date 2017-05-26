@@ -62,7 +62,20 @@
         <li>
             <div class="side-body">
                 <h5>Weather</h5>
-                <div id="side-panel-weather"></div>
+                <div id="side-panel-weather">
+                    <div id="weather-prim-info">
+                        <img src="" id="weather-icon" alt="Icon depicting current weather." width="64">
+                        <div id="temperature">
+                            <h5 id="current-temp"></h5>
+                            <p id="max-min-temp"></p>
+                        </div>
+                    </div>
+                    <div id="weather-sec-info">
+                        <p id="humidity"></p>
+                        <p id="wind"></p>
+                        <p id="pressure"></p>
+                    </div>
+                </div>
             </div>
         </li>
         <li>

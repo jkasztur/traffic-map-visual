@@ -71,7 +71,6 @@ function createInfoWindowContent(item) {
 function openSidePanel(item) {
     var $sidePanel = $('#sidePanelButton');
     var $description = $('#side-panel-desc');
-    var $weather = $('#side-panel-weather');
     var $statistics = $('#side-panel-stats')
 
     $sidePanel.sideNav({
@@ -79,12 +78,12 @@ function openSidePanel(item) {
         draggable: false
     });
 
+    createWeatherContent(item);
+
     $description.empty();
-    $weather.empty();
     $statistics.empty();
 
     $description.append(createDescriptionContent(item));
-    $weather.append(createWeatherContent(item));
     $statistics.append(createStatisticsContent(item));
 
     $sidePanel.sideNav('show');
@@ -108,9 +107,12 @@ function createDescriptionContent(item) {
 }
 
 function createWeatherContent(item) {
-    var weather = " ";
-
-    return weather;
+    $('#weather-icon').attr("src", item.localWeather.weatherIcon);
+    $('#current-temp').html("<b>" + Math.round(item.localWeather.currentTemp) + " &deg;C</b>");
+    $('#max-min-temp').html(Math.round(item.localWeather.maxTemp) + "&deg;/" + Math.round(item.localWeather.minTemp) + "&deg;");
+    $('#humidity').text("Humidity: " + item.localWeather.humidity + "%");
+    $('#wind').text("Wind: " + item.localWeather.windSpeed + " m/s - " + item.localWeather.windDirection);
+    $('#pressure').text("Pressure: " + item.localWeather.pressure + " hPa");
 }
 
 function createStatisticsContent(item) {
