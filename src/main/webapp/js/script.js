@@ -109,10 +109,12 @@ function createDescriptionContent(item) {
 function createWeatherContent(item) {
     $('#weather-icon').attr("src", item.localWeather.weatherIcon);
     $('#current-temp').html("<b>" + Math.round(item.localWeather.currentTemp) + " &deg;C</b>");
-    $('#max-min-temp').html(Math.round(item.localWeather.maxTemp) + "&deg;/" + Math.round(item.localWeather.minTemp) + "&deg;");
-    $('#humidity').text("Humidity: " + item.localWeather.humidity + "%");
-    $('#wind').text("Wind: " + item.localWeather.windSpeed + " m/s - " + item.localWeather.windDirection);
-    $('#pressure').text("Pressure: " + item.localWeather.pressure + " hPa");
+    $('#max-min-temp').html(Math.round(item.localWeather.maxTemp) + "&deg;/" +
+        Math.round(item.localWeather.minTemp) + "&deg;");
+    $('#humidity').text(item.localWeather.humidity + "%");
+    $('#wind').html(item.localWeather.windSpeed +
+        " m/s at " + item.localWeather.windDirection);
+    $('#pressure').text(item.localWeather.pressure + " hPa");
 }
 
 function createStatisticsContent(item) {

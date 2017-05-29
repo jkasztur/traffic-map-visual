@@ -71,9 +71,20 @@
                         </div>
                     </div>
                     <div id="weather-sec-info">
-                        <p id="humidity"></p>
-                        <p id="wind"></p>
-                        <p id="pressure"></p>
+                        <ul>
+                            <li>
+                                <span class="icon-humidity"></span>
+                                <span id="humidity"></span>
+                            </li>
+                            <li>
+                                <span class="icon-wind"></span>
+                                <span id="wind"></span>
+                            </li>
+                            <li>
+                                <span class="icon-pressure"></span>
+                                <span id="pressure"></span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
