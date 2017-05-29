@@ -6,6 +6,8 @@ body {
 
 main {
     flex: 1 0 auto;
+    height: 85%;
+    margin-top: -17px;
 }
 
 #sidePanelButton {
@@ -36,7 +38,7 @@ footer .footer-copyright {
 }
 
 #map {
-    height: 85%;
+    height: 100%;
     width: 100%;
 }
 
@@ -99,8 +101,9 @@ footer .footer-copyright {
 
 .icon-humidity {
     background: url("/resources/icons/humidity.png") no-repeat left center;
-    background-size: 32px;
-    padding: 16px 16px 5px;
+    background-size: 20px;
+    padding: 16px 14px 5px;
+    margin-left: 5px;
 }
 
 .icon-wind {
