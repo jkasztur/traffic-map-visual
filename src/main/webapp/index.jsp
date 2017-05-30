@@ -28,11 +28,14 @@
                     <a href="#" class="brand-logo">Traffic Map Visual</a>
                 </div>
                 <div class="col s12 l5">
-                    <form>
+                    <form onsubmit="doSearch();return false">
                         <div class="input-field">
-                            <input id="search" type="search" placeholder="Search on map..." required>
-                            <label class="label-icon search-icons" for="search"><i
-                                    class="material-icons">search</i></label>
+                            <input id="search_field" type="search" placeholder="Search on map..." required>
+                            <label class="label-icon search-icons" for="search_field">
+                                <button id="submit-button" type="submit">
+                                    <i class="material-icons">search</i>
+                                </button>
+                            </label>
                             <i class="material-icons search-icons">close</i>
                         </div>
                     </form>

@@ -1,6 +1,7 @@
 var map;
 var infoWindow = null;
 var updated;
+var placesService;
 
 document.addEventListener('DOMContentLoaded', function () {
     if (document.querySelectorAll('#map').length > 0) {
@@ -11,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         var google_js = document.createElement('script');
         google_js.type = 'text/javascript';
-        google_js.src = 'https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyDKKo1oPPy6FcBJXMaPhd_iIkIzrzRtCu8&language=' + lang;
+        google_js.src = 'https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyDKKo1oPPy6FcBJXMaPhd_iIkIzrzRtCu8&libraries=places&language=' + lang;
 
         document.getElementsByTagName('head')[0].appendChild(google_js);
 
@@ -32,6 +33,40 @@ function initMap() {
 
         addMarkers(items);
     });
+    placesService = new google.maps.places.PlacesService(map);
+}
+
+// Centers map to given location
+function centerMap(location) {
+    infoWindow.setPosition(location);
+    infoWindow.setContent('Location found.');
+    infoWindow.open(map);
+    map.setCenter(location);
+}
+
+// Function called on submission of search form
+function doSearch() {
+    var stringRequest = document.getElementById("search_field").value;
+    var request = {
+       location: map.getCenter(),
+       query: stringRequest
+    };
+
+    placesService.textSearch(request, centerCallback);
+}
+
+// Function called by google.maps.places.PlacesService service
+function centerCallback(results, status) {
+    if (status !== google.maps.places.PlacesServiceStatus.OK) {
+        Materialize.toast('Search not successful.', 2000)
+        return;
+    }
+
+   if (results.length == 0) {
+      Materialize.toast('Nothing found.', 2000)
+         return;
+   }
+   centerMap(results[0].geometry.location)
 }
 
 function addMarker(item) {

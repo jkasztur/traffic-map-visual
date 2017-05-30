@@ -33,6 +33,11 @@ footer .footer-copyright {
     margin-top: 0.5%;
 }
 
+#submit-button {
+    background: transparent;
+    border: none;
+}
+
 .search-icons {
     margin-top: -0.5%;
 }
