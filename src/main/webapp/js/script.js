@@ -51,7 +51,7 @@ function createInfoWindowContent(item) {
     content.setAttribute("id", "info-window");
     content.innerHTML =
         "<h5>Description</h5>" +
-        createDescriptionContent(item) +
+        formatDate(item.activeFrom) +
         "<div class='divider'></div>" +
         "<img src='" + item.localWeather.weatherIcon + "' alt='Icon depicting current weather.'/>" +
         "<p>" + item.localWeather.currentTemp + " &deg;C</p>";
@@ -66,6 +66,10 @@ function createInfoWindowContent(item) {
     content.appendChild(sidePanelButton);
 
     return content;
+}
+
+function formatDate(date) {
+    return moment(date).format("DD.MM.YYYY hh:mm");
 }
 
 function openSidePanel(item) {
