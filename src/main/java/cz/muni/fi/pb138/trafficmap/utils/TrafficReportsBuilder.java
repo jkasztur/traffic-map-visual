@@ -40,24 +40,29 @@ public class TrafficReportsBuilder {
         try {
             NodeList reportElements = TrafficReportsDataDownloader.getTrafficReports();
             XPath xPath = XPathFactory.newInstance().newXPath();
+
             for (int i = 0; i < reportElements.getLength(); i++) {
                 Node reportNode = reportElements.item(i);
                 if (reportNode.getNodeType() == Node.ELEMENT_NODE) {
                     Element reportElement = (Element) reportNode;
                     TrafficReport report = new TrafficReport();
+
                     GpsCoords start = getStartCoord(reportElement, xPath);
                     GpsCoords end = getEndCoord(reportElement, xPath);
                     CurrentWeather localWeather = WeatherUtils.getWeatherAtLocationObject((float) start.getLng(), (float) start.getLat());
-                    //localWeather.
                     String message = getMessage(reportElement, xPath);
                     ZonedDateTime from = getActiveFrom(reportElement, xPath);
                     ZonedDateTime to = getActiveTo(reportElement, xPath);
+
                     report.setActiveFrom(from);
                     report.setActiveTo(to);
                     report.setMessage(message);
+                    report.setPrimaryLocalization(getPrimaryLocalization(reportElement, xPath));
+                    report.setInfoText(getInfoText(reportElement, xPath));
                     report.setStart(start);
                     report.setEnd(end);
                     report.setLocalWeather(localWeather);
+
                     reports.add(report);
                 }
             }
@@ -71,14 +76,16 @@ public class TrafficReportsBuilder {
         String result = null;
         List<TrafficReport> reports = getReports();
         ObjectMapper mapper = new ObjectMapper();
+
         JavaTimeModule javaTimeModule = new JavaTimeModule();
-        SimpleModule sm = new SimpleModule("MyModule", new Version(1, 0, 0, null, null, null));
-        sm.addSerializer(CurrentWeather.class, new WeatherSerializer());
-        mapper.registerModule(sm);
-        // Hack time module to allow 'Z' at the end of string (i.e. javascript json's)
         javaTimeModule.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ISO_DATE_TIME));
         mapper.registerModule(javaTimeModule);
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+
+        SimpleModule sm = new SimpleModule("MyModule", new Version(1, 0, 0, null, null, null));
+        sm.addSerializer(CurrentWeather.class, new WeatherSerializer());
+        mapper.registerModule(sm);
+
         StringWriter sw = new StringWriter();
         try {
             mapper.writeValue(sw, reports);
@@ -111,6 +118,14 @@ public class TrafficReportsBuilder {
         String messageXpath = ".//MTXT/text()";
         String value = (String) xPath.evaluate(messageXpath, elem, XPathConstants.STRING);
         return value;
+    }
+
+    private static String getPrimaryLocalization(Element elem, XPath xPath) throws XPathExpressionException {
+        return (String) xPath.evaluate(".//TXPL/text()", elem, XPathConstants.STRING);
+    }
+
+    private static String getInfoText(Element elem, XPath xPath) throws XPathExpressionException {
+        return (String) xPath.evaluate(".//OTXT/text()", elem, XPathConstants.STRING);
     }
 
     private static ZonedDateTime getActiveFrom(Element elem, XPath xPath) throws XPathExpressionException {
