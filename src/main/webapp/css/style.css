@@ -52,22 +52,30 @@ footer .footer-copyright {
 }
 
 #info-window a {
-    text-align: right;
-    float: right;
     font-size: large;
-    padding-bottom: 2%;
+    /*TODO margin*/
 }
 
 #info-window p {
     font-size: medium;
 }
 
-#side-panel-desc p {
-    line-height: 126%;
+#table-info th, #table-info td {
+    padding: 8px 8px;
+    vertical-align: top;
+}
+
+#table-info {
+    margin-top: 8px;
+    margin-bottom: 8px;
 }
 
 #info-window img, #side-panel-weather img {
     float: left;
+}
+
+#side-panel-desc p {
+    line-height: 126%;
 }
 
 #temperature {

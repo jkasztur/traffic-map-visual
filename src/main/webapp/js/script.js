@@ -24,8 +24,9 @@ function initMap() {
 
     google.maps.event.addListenerOnce(map, 'idle', function () {
         infoWindow = new google.maps.InfoWindow({
-            maxWidth: 350
+            maxWidth: 400
         });
+
         addMarkers(items);
     });
 }
@@ -49,16 +50,44 @@ function addMarker(item) {
 function createInfoWindowContent(item) {
     var content = document.createElement("div");
     content.setAttribute("id", "info-window");
+
+    var localization = item.primaryLocalization.charAt(0).toUpperCase() + item.primaryLocalization.substr(1);
+    var info = item.infoText.split(";")[0];
+    info = info.charAt(0).toUpperCase() + info.substr(1);
+
     content.innerHTML =
-        "<h5>Description</h5>" +
-        formatDate(item.activeFrom) +
+        "<div id='info-header'>" +
+        "<h5><b>Info</b></h5>" +
+        "<p><img src='" + item.localWeather.weatherIcon + "' alt='Icon depicting current weather.'/>" + Math.round(item.localWeather.currentTemp) + " &deg;C</p>" +
+        "</div>" +
         "<div class='divider'></div>" +
-        "<img src='" + item.localWeather.weatherIcon + "' alt='Icon depicting current weather.'/>" +
-        "<p>" + item.localWeather.currentTemp + " &deg;C</p>";
+        "<table id='table-info'>" +
+        "<tr>" +
+        "<th>From</th>" +
+        "<td>" + formatDate(item.activeFrom) + "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<th>To</th>" +
+        "<td>" + formatDate(item.activeTo) + "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<th>Where</th>" +
+        "<td>" + localization + "</td>" +
+        "</tr>" +
+        "<tr>" +
+        "<th>What</th>" +
+        "<td>" + info + "</td>" +
+        "</tr>" +
+        "</table>" +
+        // "<div class='divider'></div>" +
+        // "<p><b>Current Weather</b></p>" +
+        // "<img src='" + item.localWeather.weatherIcon + "' alt='Icon depicting current weather.'/>" +
+        // "<p>" + Math.round(item.localWeather.currentTemp) + " &deg;C</p>" +
+        "<div class='divider'></div>";
 
     var sidePanelButton = document.createElement("a");
     sidePanelButton.href = "#";
-    sidePanelButton.textContent = "Detail";
+    sidePanelButton.textContent = "DETAIL";
     sidePanelButton.addEventListener('click', function () {
         openSidePanel(item);
     });
@@ -69,7 +98,7 @@ function createInfoWindowContent(item) {
 }
 
 function formatDate(date) {
-    return moment(date).format("DD.MM.YYYY hh:mm");
+    return moment(date).format("DD.MM.YYYY HH:mm");
 }
 
 function openSidePanel(item) {
