@@ -81,7 +81,6 @@ mvn clean -Pkaraf
 - Róbert Ďuriančík  
 - Matej Sojak  
 - Jan Kasztura
-- Kristýna Pokorná
 
 ## Supervisor:
 - RNDr. Adam Rambousek, Ph.D.
