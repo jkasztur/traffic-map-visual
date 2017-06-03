@@ -24,7 +24,7 @@ function initMap() {
 
     google.maps.event.addListenerOnce(map, 'idle', function () {
         infoWindow = new google.maps.InfoWindow({
-            maxWidth: 400
+            maxWidth: 350
         });
 
         addMarkers(items);
@@ -57,11 +57,19 @@ function createInfoWindowContent(item) {
 
     content.innerHTML =
         "<div id='info-header'>" +
+        "<div id='info-header-title'>" +
         "<h5><b>Info</b></h5>" +
-        "<p><img src='" + item.localWeather.weatherIcon + "' alt='Icon depicting current weather.'/>" + Math.round(item.localWeather.currentTemp) + " &deg;C</p>" +
+        "</div>" +
+        "<div id='info-header-temp'>" +
+        "<div id='info-header-temp-icon'>" +
+        "<img src='" + item.localWeather.weatherIcon + "' alt='Icon depicting current weather.'/>" +
+        "</div><div id='info-header-current-temp'>" +
+        "<p>" + Math.round(item.localWeather.currentTemp) + " &deg;C</p>" +
+        "</div>" +
+        "</div>" +
         "</div>" +
         "<div class='divider'></div>" +
-        "<table id='table-info'>" +
+        "<table id='info-table'>" +
         "<tr>" +
         "<th>From</th>" +
         "<td>" + formatDate(item.activeFrom) + "</td>" +
@@ -79,20 +87,20 @@ function createInfoWindowContent(item) {
         "<td>" + info + "</td>" +
         "</tr>" +
         "</table>" +
-        // "<div class='divider'></div>" +
-        // "<p><b>Current Weather</b></p>" +
-        // "<img src='" + item.localWeather.weatherIcon + "' alt='Icon depicting current weather.'/>" +
-        // "<p>" + Math.round(item.localWeather.currentTemp) + " &deg;C</p>" +
         "<div class='divider'></div>";
+
+    var sidePanelBlock = document.createElement("div");
+    sidePanelBlock.setAttribute("id", "info-footer");
 
     var sidePanelButton = document.createElement("a");
     sidePanelButton.href = "#";
-    sidePanelButton.textContent = "DETAIL";
+    sidePanelButton.textContent = "Show Details";
     sidePanelButton.addEventListener('click', function () {
         openSidePanel(item);
     });
 
-    content.appendChild(sidePanelButton);
+    sidePanelBlock.appendChild(sidePanelButton);
+    content.appendChild(sidePanelBlock);
 
     return content;
 }

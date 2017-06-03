@@ -51,26 +51,57 @@ footer .footer-copyright {
     padding: 16px;
 }
 
-#info-window a {
-    font-size: large;
-    /*TODO margin*/
+#info-header {
+    height: 50px;
+    width: 95%;
 }
 
-#info-window p {
+#info-header-title {
+    width: 50%;
+    height: 50px;
+    float: left;
+    padding-left: 4px;
+}
+
+#info-header-temp {
+    width: 50%;
+    height: 50px;
+    float: right;
+    text-align: right;
+}
+
+#info-header-temp-icon {
+    display: inline-block;
+}
+
+#info-header-current-temp {
+    display: inline-block;
+    vertical-align: top;
     font-size: medium;
+    font-weight: normal;
 }
 
-#table-info th, #table-info td {
+#info-table th, #info-table td {
     padding: 8px 8px;
     vertical-align: top;
 }
 
-#table-info {
+#info-table {
     margin-top: 8px;
     margin-bottom: 8px;
 }
 
-#info-window img, #side-panel-weather img {
+#info-footer {
+    font-size: large;
+    font-weight: normal;
+    text-transform: uppercase;
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+#side-panel-weather img {
     float: left;
 }
 
