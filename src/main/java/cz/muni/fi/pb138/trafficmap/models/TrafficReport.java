@@ -15,6 +15,8 @@ public class TrafficReport {
     private ZonedDateTime activeTo;
     private String region;
     private String district;
+    private String primaryLocalization;
+    private String infoText;
     private GpsCoords startLoc;
     private GpsCoords endLoc;
 
@@ -24,6 +26,22 @@ public class TrafficReport {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getPrimaryLocalization() {
+        return primaryLocalization;
+    }
+
+    public void setPrimaryLocalization(String primaryLocalization) {
+        this.primaryLocalization = primaryLocalization;
+    }
+
+    public String getInfoText() {
+        return infoText;
+    }
+
+    public void setInfoText(String infoText) {
+        this.infoText = infoText;
     }
 
     public CurrentWeather getLocalWeather() {
