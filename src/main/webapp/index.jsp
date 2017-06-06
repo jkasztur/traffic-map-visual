@@ -61,6 +61,24 @@
         </li>
         <li>
             <div class="side-body">
+                <h5>Location</h5>
+                <div id="side-panel-location"></div>
+            </div>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <div class="side-body">
+                <h5>Time</h5>
+                <div id="side-panel-time"></div>
+            </div>
+        </li>
+        <li>
+            <div class="divider"></div>
+        </li>
+        <li>
+            <div class="side-body">
                 <h5>Weather</h5>
                 <div id="side-panel-weather">
                     <div id="weather-prim-info">
