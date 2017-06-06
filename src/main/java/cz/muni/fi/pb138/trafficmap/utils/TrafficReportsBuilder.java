@@ -1,11 +1,15 @@
 package cz.muni.fi.pb138.trafficmap.utils;
 
+
+import com.google.maps.errors.ApiException;
+
 import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+
 import cz.muni.fi.pb138.trafficmap.models.GpsCoords;
 import cz.muni.fi.pb138.trafficmap.models.TrafficReport;
 import net.aksingh.owmjapis.CurrentWeather;
@@ -53,7 +57,10 @@ public class TrafficReportsBuilder {
                     String message = getMessage(reportElement, xPath);
                     ZonedDateTime from = getActiveFrom(reportElement, xPath);
                     ZonedDateTime to = getActiveTo(reportElement, xPath);
-
+                    String district = GeocodingUtils.getDistrictFromCoords(start.getLat(), start.getLng());
+                    String region = GeocodingUtils.getRegionFromCoords(start.getLat(), start.getLng());
+                    report.setDistrict(district);
+                    report.setRegion(region);
                     report.setActiveFrom(from);
                     report.setActiveTo(to);
                     report.setMessage(message);
@@ -68,6 +75,12 @@ public class TrafficReportsBuilder {
             }
         } catch (XPathExpressionException ex) {
             log.error("XPathExpressionException: " + ex.getMessage());
+        } catch (InterruptedException ex) {
+            log.error("InterruptedException: " + ex.getMessage());
+        } catch (IOException ex) {
+            log.error("IOException: " + ex.getMessage());
+        } catch (ApiException ex) {
+            log.error("ApiException: " + ex.getMessage());
         }
         return reports;
     }
