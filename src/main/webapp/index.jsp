@@ -67,6 +67,10 @@
                 <div id="side-panel-location">
                     <h6>Primary Localization</h6>
                     <p id="prim-localization"></p>
+                    <h6>District</h6>
+                    <p id="district"></p>
+                    <h6>Region</h6>
+                    <p id="region"></p>
                 </div>
             </div>
         </li>

@@ -127,6 +127,8 @@ function createDescriptionContent(item) {
 
 function createLocationContent(item) {
     $('#prim-localization').text(parseText(item.primaryLocalization));
+    $('#district').text(item.district);
+    $('#region').text(item.region);
 }
 
 function createWeatherContent(item) {
@@ -141,9 +143,7 @@ function createWeatherContent(item) {
 }
 
 function createStatisticsContent(item) {
-    var statistics = "";
     // TODO create statistics content
-    return statistics;
 }
 
 function parseText(text) {
