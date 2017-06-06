@@ -111,7 +111,6 @@ function formatDate(date) {
 
 function openSidePanel(item) {
     var $sidePanel = $('#sidePanelButton');
-    var $description = $('#side-panel-desc');
     var $statistics = $('#side-panel-stats')
 
     $sidePanel.sideNav({
@@ -120,31 +119,28 @@ function openSidePanel(item) {
     });
 
     createWeatherContent(item);
-
-    $description.empty();
+    createDescriptionContent(item);
     $statistics.empty();
 
-    $description.append(createDescriptionContent(item));
     $statistics.append(createStatisticsContent(item));
 
     $sidePanel.sideNav('show');
 }
 
 function createDescriptionContent(item) {
-    var message = item.message.split(";");
+    var info = item.infoText.split(";");
+    var description = "";
 
-    var description = "<p>";
-    for (var i = 0; i < message.length; ++i) {
-        message[i] = message[i].trim();
-        message[i] = message[i].charAt(0).toUpperCase() + message[i].substr(1);
-        if (message[i].charAt(message[i].length - 1) !== '.') {
-            description += message[i] + ". ";
+    for (var i = 0; i < info.length; ++i) {
+        info[i] = info[i].trim();
+        info[i] = info[i].charAt(0).toUpperCase() + info[i].substr(1);
+        if (info[i].charAt(info[i].length - 1) !== '.') {
+            description += info[i] + ". ";
         }
 
     }
-    description += "</p>";
 
-    return description;
+    $('#description').text(description);
 }
 
 function createWeatherContent(item) {

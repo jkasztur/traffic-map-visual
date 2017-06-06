@@ -53,7 +53,9 @@
         <li>
             <div class="side-body">
                 <h5>Description</h5>
-                <div id="side-panel-desc"></div>
+                <div id="side-panel-desc">
+                    <p id="description"></p>
+                </div>
             </div>
         </li>
         <li>
