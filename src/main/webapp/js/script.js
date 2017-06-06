@@ -51,10 +51,6 @@ function createInfoWindowContent(item) {
     var content = document.createElement("div");
     content.setAttribute("id", "info-window");
 
-    var localization = item.primaryLocalization.charAt(0).toUpperCase() + item.primaryLocalization.substr(1);
-    var info = item.infoText.split(";")[0];
-    info = info.charAt(0).toUpperCase() + info.substr(1);
-
     content.innerHTML =
         "<div id='info-header'>" +
         "<div id='info-header-title'>" +
@@ -80,11 +76,11 @@ function createInfoWindowContent(item) {
         "</tr>" +
         "<tr>" +
         "<th>Where</th>" +
-        "<td>" + localization + "</td>" +
+        "<td>" + parseText(item.primaryLocalization) + "</td>" +
         "</tr>" +
         "<tr>" +
         "<th>What</th>" +
-        "<td>" + info + "</td>" +
+        "<td>" + parseText(item.infoText.split(";")[0]) + "</td>" +
         "</tr>" +
         "</table>" +
         "<div class='divider'></div>";
@@ -111,36 +107,26 @@ function formatDate(date) {
 
 function openSidePanel(item) {
     var $sidePanel = $('#sidePanelButton');
-    var $statistics = $('#side-panel-stats')
 
     $sidePanel.sideNav({
         menuWidth: 450,
         draggable: false
     });
 
-    createWeatherContent(item);
     createDescriptionContent(item);
-    $statistics.empty();
-
-    $statistics.append(createStatisticsContent(item));
+    createLocationContent(item);
+    createWeatherContent(item);
+    createStatisticsContent(item)
 
     $sidePanel.sideNav('show');
 }
 
 function createDescriptionContent(item) {
-    var info = item.infoText.split(";");
-    var description = "";
+    $('#description').text(parseText(item.infoText));
+}
 
-    for (var i = 0; i < info.length; ++i) {
-        info[i] = info[i].trim();
-        info[i] = info[i].charAt(0).toUpperCase() + info[i].substr(1);
-        if (info[i].charAt(info[i].length - 1) !== '.') {
-            description += info[i] + ". ";
-        }
-
-    }
-
-    $('#description').text(description);
+function createLocationContent(item) {
+    $('#prim-localization').text(parseText(item.primaryLocalization));
 }
 
 function createWeatherContent(item) {
@@ -158,6 +144,23 @@ function createStatisticsContent(item) {
     var statistics = "";
     // TODO create statistics content
     return statistics;
+}
+
+function parseText(text) {
+    var splitText = text.split(";");
+    var parsedText = "";
+
+    for (var i = 0; i < splitText.length; ++i) {
+        splitText[i] = splitText[i].trim();
+        splitText[i] = splitText[i].charAt(0).toUpperCase() + splitText[i].substr(1);
+
+        parsedText += splitText[i];
+        if (parsedText.charAt(parsedText.length - 1) !== '.') {
+            parsedText += ". ";
+        }
+    }
+
+    return parsedText;
 }
 
 function addMarkers(items) {

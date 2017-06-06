@@ -64,7 +64,10 @@
         <li>
             <div class="side-body">
                 <h5>Location</h5>
-                <div id="side-panel-location"></div>
+                <div id="side-panel-location">
+                    <h6>Primary Localization</h6>
+                    <p id="prim-localization"></p>
+                </div>
             </div>
         </li>
         <li>
