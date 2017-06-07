@@ -131,6 +131,10 @@ function createLocationContent(item) {
     $('#region').text(item.region);
 }
 
+function createTimeContent(item) {
+    // TODO create time content
+}
+
 function createWeatherContent(item) {
     $('#weather-icon').attr("src", item.localWeather.weatherIcon);
     $('#current-temp').html("<b>" + Math.round(item.localWeather.currentTemp) + " &deg;C</b>");

@@ -65,12 +65,18 @@
             <div class="side-body">
                 <h5>Location</h5>
                 <div id="side-panel-location">
-                    <h6>Primary Localization</h6>
-                    <p id="prim-localization"></p>
-                    <h6>District</h6>
-                    <p id="district"></p>
-                    <h6>Region</h6>
-                    <p id="region"></p>
+                    <div class="side-panel-location-block">
+                        <h6>Primary Localization</h6>
+                        <p id="prim-localization"></p>
+                    </div>
+                    <div class="side-panel-location-block  side-panel-location-inline-block">
+                        <h6>District</h6>
+                        <p id="district"></p>
+                    </div>
+                    <div class="side-panel-location-block side-panel-location-inline-block">
+                        <h6>Region</h6>
+                        <p id="region"></p>
+                    </div>
                 </div>
             </div>
         </li>
