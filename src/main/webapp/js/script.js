@@ -1,3 +1,7 @@
+var map;
+var infoWindow = null;
+var updated;
+
 document.addEventListener('DOMContentLoaded', function () {
     if (document.querySelectorAll('#map').length > 0) {
         if (document.querySelector('html').lang)
@@ -10,11 +14,10 @@ document.addEventListener('DOMContentLoaded', function () {
         google_js.src = 'https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyDKKo1oPPy6FcBJXMaPhd_iIkIzrzRtCu8&language=' + lang;
 
         document.getElementsByTagName('head')[0].appendChild(google_js);
+
+        updated = moment().valueOf();
     }
 });
-
-var map;
-var infoWindow = null;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -115,6 +118,7 @@ function openSidePanel(item) {
 
     createDescriptionContent(item);
     createLocationContent(item);
+    createTimeContent(item);
     createWeatherContent(item);
     createStatisticsContent(item)
 
@@ -132,7 +136,7 @@ function createLocationContent(item) {
 }
 
 function createTimeContent(item) {
-    // TODO create time content
+    console.log(formatDate(updated));
 }
 
 function createWeatherContent(item) {

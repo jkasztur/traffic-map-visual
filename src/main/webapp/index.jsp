@@ -86,7 +86,8 @@
         <li>
             <div class="side-body">
                 <h5>Time</h5>
-                <div id="side-panel-time"></div>
+                <div id="side-panel-time">
+                </div>
             </div>
         </li>
         <li>
