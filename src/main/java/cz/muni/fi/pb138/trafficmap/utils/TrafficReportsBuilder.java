@@ -1,5 +1,10 @@
 package cz.muni.fi.pb138.trafficmap.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -8,19 +13,16 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.google.maps.errors.ApiException;
+
 import cz.muni.fi.pb138.trafficmap.models.GpsCoords;
 import cz.muni.fi.pb138.trafficmap.models.TrafficReport;
 import net.aksingh.owmjapis.CurrentWeather;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
+
 import java.io.IOException;
 import java.io.StringWriter;
 import java.time.LocalDateTime;
@@ -30,6 +32,11 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
+
+import cz.muni.fi.pb138.trafficmap.models.GpsCoords;
+import cz.muni.fi.pb138.trafficmap.models.TrafficReport;
+import net.aksingh.owmjapis.CurrentWeather;
 
 /**
  * Created by Matej on 4.5.2017.
@@ -37,7 +44,19 @@ import java.util.TimeZone;
 public class TrafficReportsBuilder {
     private final static Logger log = LoggerFactory.getLogger(TrafficReportsBuilder.class);
 
+    private static List<TrafficReport> reportList = null;
+
+    private static Long lastUpdated = null;
+
     public static List<TrafficReport> getReports() {
+        if (shouldUpdate()) {
+            reportList = updateReports();
+        }
+        return reportList;
+    }
+
+    private static List<TrafficReport> updateReports() {
+        log.info("Generating new reports.");
         List<TrafficReport> reports = new ArrayList<>();
         try {
             NodeList reportElements = TrafficReportsDataDownloader.getTrafficReports();
@@ -80,6 +99,7 @@ public class TrafficReportsBuilder {
         } catch (ApiException ex) {
             log.error("ApiException: " + ex.getMessage());
         }
+        lastUpdated = System.nanoTime();
         return reports;
     }
 
@@ -108,6 +128,19 @@ public class TrafficReportsBuilder {
         return result;
     }
 
+    private static boolean shouldUpdate() {
+
+        if (reportList == null) {
+            return true;
+        }
+        if (lastUpdated != null) {
+            final long timeDiff = System.nanoTime() - lastUpdated;
+            log.info("Last updated " + TimeUnit.MINUTES.convert(timeDiff, TimeUnit.NANOSECONDS) + " minutes ago.");
+            return timeDiff > TimeUnit.MINUTES.toNanos(30);
+        }
+
+        return true;
+    }
 
     private static GpsCoords getStartCoord(Element elem, XPath xPath) throws XPathExpressionException {
         String xCoordXpath = ".//SBEG/@x";
