@@ -136,7 +136,9 @@ function createLocationContent(item) {
 }
 
 function createTimeContent(item) {
-    console.log(formatDate(updated));
+    $('#time-from').text(formatDate(item.activeFrom));
+    $('#time-to').text(formatDate(item.activeTo));
+    $('#time-updated').text(formatDate(updated));
 }
 
 function createWeatherContent(item) {

@@ -45,7 +45,6 @@
 <main>
     <ul id="slide-out" class="side-nav ">
         <li>
-            <%--<div id="side-head" class="light-blue side-head" style="padding: 16px; color: white;">--%>
             <div id="side-head" class="light-blue side-head">
                 <h4>Traffic Report</h4>
             </div>
@@ -65,15 +64,15 @@
             <div class="side-body">
                 <h5>Location</h5>
                 <div id="side-panel-location">
-                    <div class="side-panel-location-block">
+                    <div class="side-panel-block">
                         <h6>Primary Localization</h6>
                         <p id="prim-localization"></p>
                     </div>
-                    <div class="side-panel-location-block  side-panel-location-inline-block">
+                    <div class="side-panel-block  side-panel-location-inline-block">
                         <h6>District</h6>
                         <p id="district"></p>
                     </div>
-                    <div class="side-panel-location-block side-panel-location-inline-block">
+                    <div class="side-panel-block side-panel-location-inline-block">
                         <h6>Region</h6>
                         <p id="region"></p>
                     </div>
@@ -87,6 +86,20 @@
             <div class="side-body">
                 <h5>Time</h5>
                 <div id="side-panel-time">
+                    <div class="side-panel-block">
+                        <div id="side-panel-time-from">
+                            <h6>From</h6>
+                            <p id="time-from"></p>
+                        </div>
+                        <div id="side-panel-time-to">
+                            <h6>To</h6>
+                            <p id="time-to"></p>
+                        </div>
+                    </div>
+                    <div id="side-panel-time-updated" class="side-panel-block">
+                        <h6>Updated</h6>
+                        <p id="time-updated"></p>
+                    </div>
                 </div>
             </div>
         </li>
