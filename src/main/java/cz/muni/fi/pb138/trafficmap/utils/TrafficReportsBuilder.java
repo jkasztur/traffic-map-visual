@@ -34,10 +34,6 @@ import java.util.List;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
-import cz.muni.fi.pb138.trafficmap.models.GpsCoords;
-import cz.muni.fi.pb138.trafficmap.models.TrafficReport;
-import net.aksingh.owmjapis.CurrentWeather;
-
 /**
  * Created by Matej on 4.5.2017.
  */
