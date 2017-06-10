@@ -21,6 +21,6 @@ public abstract class AbstractStatistics {
 	private int slightlyInjured;
 
 	@Getter @Setter
-	private int propertyDamage;
+	private double propertyDamage;
 
 }
