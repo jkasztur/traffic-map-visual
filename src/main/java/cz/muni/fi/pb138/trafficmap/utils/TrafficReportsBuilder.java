@@ -14,6 +14,10 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.google.maps.errors.ApiException;
 
+import cz.muni.fi.pb138.trafficmap.models.GpsCoords;
+import cz.muni.fi.pb138.trafficmap.models.TrafficReport;
+import net.aksingh.owmjapis.CurrentWeather;
+
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpressionException;
@@ -29,10 +33,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
-
-import cz.muni.fi.pb138.trafficmap.models.GpsCoords;
-import cz.muni.fi.pb138.trafficmap.models.TrafficReport;
-import net.aksingh.owmjapis.CurrentWeather;
 
 /**
  * Created by Matej on 4.5.2017.
@@ -70,8 +70,8 @@ public class TrafficReportsBuilder {
                     String message = getMessage(reportElement, xPath);
                     ZonedDateTime from = getActiveFrom(reportElement, xPath);
                     ZonedDateTime to = getActiveTo(reportElement, xPath);
-                    String district = GeocodingUtils.getDistrictFromCoords(start.getLat(), start.getLng());
-                    String region = GeocodingUtils.getRegionFromCoords(start.getLat(), start.getLng());
+                    String district = GeocodingUtils.getDistrictFromCoords(start.getLng(), start.getLat());
+                    String region = GeocodingUtils.getRegionFromCoords(start.getLng(), start.getLat());
                     report.setDistrict(district);
                     report.setRegion(region);
                     report.setActiveFrom(from);

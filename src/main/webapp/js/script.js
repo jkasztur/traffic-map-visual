@@ -1,3 +1,7 @@
+var map;
+var infoWindow = null;
+var updated;
+
 document.addEventListener('DOMContentLoaded', function () {
     if (document.querySelectorAll('#map').length > 0) {
         if (document.querySelector('html').lang)
@@ -10,11 +14,10 @@ document.addEventListener('DOMContentLoaded', function () {
         google_js.src = 'https://maps.googleapis.com/maps/api/js?callback=initMap&key=AIzaSyDKKo1oPPy6FcBJXMaPhd_iIkIzrzRtCu8&language=' + lang;
 
         document.getElementsByTagName('head')[0].appendChild(google_js);
+
+        updated = moment().valueOf();
     }
 });
-
-var map;
-var infoWindow = null;
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -51,10 +54,6 @@ function createInfoWindowContent(item) {
     var content = document.createElement("div");
     content.setAttribute("id", "info-window");
 
-    var localization = item.primaryLocalization.charAt(0).toUpperCase() + item.primaryLocalization.substr(1);
-    var info = item.infoText.split(";")[0];
-    info = info.charAt(0).toUpperCase() + info.substr(1);
-
     content.innerHTML =
         "<div id='info-header'>" +
         "<div id='info-header-title'>" +
@@ -80,11 +79,11 @@ function createInfoWindowContent(item) {
         "</tr>" +
         "<tr>" +
         "<th>Where</th>" +
-        "<td>" + localization + "</td>" +
+        "<td>" + parseText(item.primaryLocalization) + "</td>" +
         "</tr>" +
         "<tr>" +
         "<th>What</th>" +
-        "<td>" + info + "</td>" +
+        "<td>" + parseText(item.infoText.split(";")[0]) + "</td>" +
         "</tr>" +
         "</table>" +
         "<div class='divider'></div>";
@@ -111,40 +110,35 @@ function formatDate(date) {
 
 function openSidePanel(item) {
     var $sidePanel = $('#sidePanelButton');
-    var $description = $('#side-panel-desc');
-    var $statistics = $('#side-panel-stats')
 
     $sidePanel.sideNav({
         menuWidth: 450,
         draggable: false
     });
 
+    createDescriptionContent(item);
+    createLocationContent(item);
+    createTimeContent(item);
     createWeatherContent(item);
-
-    $description.empty();
-    $statistics.empty();
-
-    $description.append(createDescriptionContent(item));
-    $statistics.append(createStatisticsContent(item));
+    createStatisticsContent(item)
 
     $sidePanel.sideNav('show');
 }
 
 function createDescriptionContent(item) {
-    var message = item.message.split(";");
+    $('#description').text(parseText(item.infoText));
+}
 
-    var description = "<p>";
-    for (var i = 0; i < message.length; ++i) {
-        message[i] = message[i].trim();
-        message[i] = message[i].charAt(0).toUpperCase() + message[i].substr(1);
-        if (message[i].charAt(message[i].length - 1) !== '.') {
-            description += message[i] + ". ";
-        }
+function createLocationContent(item) {
+    $('#prim-localization').text(parseText(item.primaryLocalization));
+    $('#district').text(item.district);
+    $('#region').text(item.region);
+}
 
-    }
-    description += "</p>";
-
-    return description;
+function createTimeContent(item) {
+    $('#time-from').text(formatDate(item.activeFrom));
+    $('#time-to').text(formatDate(item.activeTo));
+    $('#time-updated').text(formatDate(updated));
 }
 
 function createWeatherContent(item) {
@@ -159,9 +153,24 @@ function createWeatherContent(item) {
 }
 
 function createStatisticsContent(item) {
-    var statistics = "";
     // TODO create statistics content
-    return statistics;
+}
+
+function parseText(text) {
+    var splitText = text.split(";");
+    var parsedText = "";
+
+    for (var i = 0; i < splitText.length; ++i) {
+        splitText[i] = splitText[i].trim();
+        splitText[i] = splitText[i].charAt(0).toUpperCase() + splitText[i].substr(1);
+
+        parsedText += splitText[i];
+        if (parsedText.charAt(parsedText.length - 1) !== '.') {
+            parsedText += ". ";
+        }
+    }
+
+    return parsedText;
 }
 
 function addMarkers(items) {

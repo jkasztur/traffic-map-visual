@@ -48,7 +48,22 @@ footer .footer-copyright {
 }
 
 .side-body {
-    padding: 16px;
+    padding: 16px 16px 8px;
+}
+
+.side-body p {
+    line-height: 126%;
+    margin-left: 16px;
+}
+
+.side-body h5 {
+    font-weight: 500;
+}
+
+.side-body h6 {
+    font-size: 1.21rem;
+    font-weight: 500;
+    margin-left: 8px;
 }
 
 #info-header {
@@ -101,20 +116,56 @@ footer .footer-copyright {
     text-align: center;
 }
 
+#side-panel-desc p {
+    margin-bottom: 8px;
+}
+
 #side-panel-weather img {
     float: left;
 }
 
-#side-panel-desc p {
-    line-height: 126%;
+.side-panel-block {
+    display: inline-block;
+    width: 100%;
 }
 
-#temperature {
-    line-height: 10%;
+.side-panel-location-inline-block h6 {
+    float: left;
+    width: 15%;
+}
+
+.side-panel-location-inline-block p {
+    float: left;
+    width: 70%;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+#side-panel-time-from {
+    float: left;
+    width: 45%;
+}
+
+#side-panel-time-to {
+    float: left;
+    width: 50%;
+}
+
+#side-panel-time-updated h6 {
+    float: left;
+    width: 15%;
+}
+
+#side-panel-time-updated p {
+    float: left;
+    width: 70%;
+    margin-top: 9px;
+    margin-bottom: 8px;
 }
 
 #max-min-temp {
     color: #878787;
+    line-height: 10%;
 }
 
 #side-panel-weather {
