@@ -1,4 +1,6 @@
 <%@ page import="cz.muni.fi.pb138.trafficmap.utils.TrafficReportsBuilder" %>
+<%@ page import="cz.muni.fi.pb138.trafficmap.utils.StatisticsBuilder" %>
+
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 
 <html>
@@ -172,7 +174,10 @@
 <script type="text/javascript" src="js/moment.js"></script>
 <script type="text/javascript" src="js/script.js" defer></script>
 
-<% String items = TrafficReportsBuilder.getJSONReports(); %>
+<% String items = TrafficReportsBuilder.getJSONReports();
+String regions = StatisticsBuilder.getJSONRegions();
+String districts = StatisticsBuilder.getJSONDistricts();
+%>
 <script type="text/javascript">
     var items = (<%= items %>);
 </script>
