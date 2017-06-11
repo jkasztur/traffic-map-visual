@@ -14,6 +14,9 @@ import javax.xml.xpath.XPathFactory;
 import java.io.File;
 import java.io.IOException;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public final class StatisticsUtil {
 
 	private static Document doc;
@@ -28,6 +31,10 @@ public final class StatisticsUtil {
 		} catch (SAXException | IOException | ParserConfigurationException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static String getRegionName(String regionId) {
+		return evaluateExpression("//uzemi/element[@ID = '" + regionId + "' ]/text");
 	}
 
 	public static int getTotalAccidents(String regionId) {
@@ -62,7 +69,7 @@ public final class StatisticsUtil {
 			XPathExpression expr = xpath.compile(exp);
 			response = expr.evaluate(doc);
 		} catch (XPathExpressionException e) {
-			e.printStackTrace();
+			log.error(e.getLocalizedMessage());
 			response = "-1";
 		}
 
