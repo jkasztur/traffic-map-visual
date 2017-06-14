@@ -31,7 +31,9 @@ function initMap() {
             maxWidth: 350
         });
 
-        addMarkers(items);
+        addMarkers(reports);
+        console.log(regions);
+        console.log(districts);
     });
     placesService = new google.maps.places.PlacesService(map);
 }
@@ -208,8 +210,8 @@ function parseText(text) {
     return parsedText;
 }
 
-function addMarkers(items) {
-    for (var i = 0; i < items.length; ++i) {
-        addMarker(items[i]);
+function addMarkers(reports) {
+    for (var i = 0; i < reports.length; ++i) {
+        addMarker(reports[i]);
     }
 }
