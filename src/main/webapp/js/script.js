@@ -32,8 +32,6 @@ function initMap() {
         });
 
         addMarkers(reports);
-        console.log(regions);
-        console.log(districts);
     });
     placesService = new google.maps.places.PlacesService(map);
 }
@@ -190,7 +188,8 @@ function createWeatherContent(item) {
 }
 
 function createStatisticsContent(item) {
-    // TODO create statistics content
+    var regionStatistics = getStatisticsForRegion(item.region);
+    console.log(regionStatistics);
 }
 
 function parseText(text) {
@@ -213,5 +212,17 @@ function parseText(text) {
 function addMarkers(reports) {
     for (var i = 0; i < reports.length; ++i) {
         addMarker(reports[i]);
+    }
+}
+
+function getStatisticsForRegion(region) {
+    if ("undefined" !== typeof regions) {
+        for (var i = 0; i < regions.length; ++i) {
+            if (regions[i].name === region) {
+                return regions[i];
+            }
+        }
+
+        return null;
     }
 }

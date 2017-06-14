@@ -195,21 +195,21 @@ footer .footer-copyright {
 }
 
 .icon-humidity {
-    background: url("/resources/icons/humidity.png") no-repeat left center;
+    background: url("../resources/icons/humidity.png") no-repeat left center;
     background-size: 20px;
     padding: 16px 14px 5px;
     margin-left: 5px;
 }
 
 .icon-wind {
-    background: url("/resources/icons/wind.png") no-repeat left center;
+    background: url("../resources/icons/wind.png") no-repeat left center;
     background-size: 24px;
     padding: 14px 14px 5px;
     margin-left: 4px;
 }
 
 .icon-pressure {
-    background: url("/resources/icons/barometer.png") no-repeat left center;
+    background: url("../resources/icons/barometer.png") no-repeat left center;
     background-size: 24px;
     padding: 8px 15px 3px;
     margin-left: 2px;
