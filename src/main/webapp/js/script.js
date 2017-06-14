@@ -190,6 +190,8 @@ function createWeatherContent(item) {
 function createStatisticsContent(item) {
     var regionStatistics = getStatisticsForRegion(item.region);
     console.log(regionStatistics);
+    var districtStatistics = getStatisticsForDistrict(item.district);
+    console.log(districtStatistics);
 }
 
 function parseText(text) {
@@ -220,6 +222,18 @@ function getStatisticsForRegion(region) {
         for (var i = 0; i < regions.length; ++i) {
             if (regions[i].name === region) {
                 return regions[i];
+            }
+        }
+
+        return null;
+    }
+}
+
+function getStatisticsForDistrict(district) {
+    if ("undefined" !== typeof districts) {
+        for (var i = 0; i < districts.length; ++i) {
+            if (districts[i].name === district) {
+                return districts[i];
             }
         }
 
