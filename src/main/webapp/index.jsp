@@ -238,6 +238,5 @@
     var districts = (<%= districts %>);
 </script>
 
-<%--TODO no internet connection--%>
 </body>
 </html>

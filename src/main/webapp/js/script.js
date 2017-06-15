@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
         updated = moment().valueOf();
         // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
         $('.modal').modal({
-            startingTop: '14%'
+            startingTop: '20%'
         });
 
         createStatisticsTable();
@@ -54,8 +54,8 @@ function centerMap(location) {
 function doSearch() {
     var stringRequest = document.getElementById("search_field").value;
     var request = {
-       location: map.getCenter(),
-       query: stringRequest
+        location: map.getCenter(),
+        query: stringRequest
     };
 
     placesService.textSearch(request, centerCallback);
@@ -68,11 +68,11 @@ function centerCallback(results, status) {
         return;
     }
 
-   if (results.length == 0) {
-      Materialize.toast('Nothing found.', 2000)
-         return;
-   }
-   centerMap(results[0].geometry.location)
+    if (results.length === 0) {
+        Materialize.toast('Nothing found.', 2000)
+        return;
+    }
+    centerMap(results[0].geometry.location)
 }
 
 function addMarker(item) {
@@ -195,9 +195,7 @@ function createWeatherContent(item) {
 
 function createStatisticsContent(item) {
     var regionStatistics = getStatisticsForRegion(item.region);
-    console.log(regionStatistics);
     var districtStatistics = getStatisticsForDistrict(item.district);
-    console.log(districtStatistics);
 
     $('#stats-property-damage-reg').text(regionStatistics.propertyDamage);
     $('#stats-drunk-driving-reg').text(regionStatistics.drunkDriving);
