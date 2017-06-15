@@ -197,19 +197,23 @@ function createStatisticsContent(item) {
     var regionStatistics = getStatisticsForRegion(item.region);
     var districtStatistics = getStatisticsForDistrict(item.district);
 
-    $('#stats-property-damage-reg').text(regionStatistics.propertyDamage);
-    $('#stats-drunk-driving-reg').text(regionStatistics.drunkDriving);
-    $('#stats-slightly-injured-reg').text(regionStatistics.slightlyInjured);
-    $('#stats-seriously-injured-reg').text(regionStatistics.seriouslyInjured);
-    $('#stats-killed-persons-reg').text(regionStatistics.killedPersons);
-    $('#stats-total-accidents-reg').text(regionStatistics.totalAccidents);
+    if (regionStatistics !== null) {
+        $('#stats-property-damage-reg').text(regionStatistics.propertyDamage);
+        $('#stats-drunk-driving-reg').text(regionStatistics.drunkDriving);
+        $('#stats-slightly-injured-reg').text(regionStatistics.slightlyInjured);
+        $('#stats-seriously-injured-reg').text(regionStatistics.seriouslyInjured);
+        $('#stats-killed-persons-reg').text(regionStatistics.killedPersons);
+        $('#stats-total-accidents-reg').text(regionStatistics.totalAccidents);
+    }
 
-    $('#stats-property-damage-dis').text(districtStatistics.propertyDamage);
-    $('#stats-drunk-driving-dis').text(districtStatistics.drunkDriving);
-    $('#stats-slightly-injured-dis').text(districtStatistics.slightlyInjured);
-    $('#stats-seriously-injured-dis').text(districtStatistics.seriouslyInjured);
-    $('#stats-killed-persons-dis').text(districtStatistics.killedPersons);
-    $('#stats-total-accidents-dis').text(districtStatistics.totalAccidents);
+    if (districtStatistics !== null) {
+        $('#stats-property-damage-dis').text(districtStatistics.propertyDamage);
+        $('#stats-drunk-driving-dis').text(districtStatistics.drunkDriving);
+        $('#stats-slightly-injured-dis').text(districtStatistics.slightlyInjured);
+        $('#stats-seriously-injured-dis').text(districtStatistics.seriouslyInjured);
+        $('#stats-killed-persons-dis').text(districtStatistics.killedPersons);
+        $('#stats-total-accidents-dis').text(districtStatistics.totalAccidents);
+    }
 }
 
 function parseText(text) {
