@@ -17,6 +17,12 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementsByTagName('head')[0].appendChild(google_js);
 
         updated = moment().valueOf();
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal').modal({
+            startingTop: '14%'
+        });
+
+        createStatisticsTable();
     }
 });
 
@@ -192,6 +198,20 @@ function createStatisticsContent(item) {
     console.log(regionStatistics);
     var districtStatistics = getStatisticsForDistrict(item.district);
     console.log(districtStatistics);
+
+    $('#stats-property-damage-reg').text(regionStatistics.propertyDamage);
+    $('#stats-drunk-driving-reg').text(regionStatistics.drunkDriving);
+    $('#stats-slightly-injured-reg').text(regionStatistics.slightlyInjured);
+    $('#stats-seriously-injured-reg').text(regionStatistics.seriouslyInjured);
+    $('#stats-killed-persons-reg').text(regionStatistics.killedPersons);
+    $('#stats-total-accidents-reg').text(regionStatistics.totalAccidents);
+
+    $('#stats-property-damage-dis').text(districtStatistics.propertyDamage);
+    $('#stats-drunk-driving-dis').text(districtStatistics.drunkDriving);
+    $('#stats-slightly-injured-dis').text(districtStatistics.slightlyInjured);
+    $('#stats-seriously-injured-dis').text(districtStatistics.seriouslyInjured);
+    $('#stats-killed-persons-dis').text(districtStatistics.killedPersons);
+    $('#stats-total-accidents-dis').text(districtStatistics.totalAccidents);
 }
 
 function parseText(text) {
@@ -238,5 +258,47 @@ function getStatisticsForDistrict(district) {
         }
 
         return null;
+    }
+}
+
+function createStatisticsTable() {
+    var $table = $('#stats-table');
+
+    var tr = document.createElement("tr");
+    tr.innerHTML = "<th>Regions</th>" +
+        "<th>Total Accidents</th>" +
+        "<th>Drunk Driving</th>" +
+        "<th>Slightly Injured</th>" +
+        "<th>Seriously Injured</th>" +
+        "<th>Killed Persons</th>" +
+        "<th>Property Damage</th>";
+    $table.append(tr);
+
+    for (var i = 0; i < regions.length; ++i) {
+        tr = document.createElement("tr");
+        tr.innerHTML = "<td>" + regions[i].name + "</td>" +
+            "<td>" + regions[i].totalAccidents + "</td>" +
+            "<td>" + regions[i].drunkDriving + "</td>" +
+            "<td>" + regions[i].slightlyInjured + "</td>" +
+            "<td>" + regions[i].seriouslyInjured + "</td>" +
+            "<td>" + regions[i].killedPersons + "</td>" +
+            "<td>" + regions[i].propertyDamage + "</td>";
+        $table.append(tr);
+    }
+
+    tr = document.createElement("tr");
+    tr.innerHTML = "<th>Districts</th>";
+    $table.append(tr);
+
+    for (var i = 0; i < districts.length; ++i) {
+        tr = document.createElement("tr");
+        tr.innerHTML = "<td>" + districts[i].name + "</td>" +
+            "<td>" + districts[i].totalAccidents + "</td>" +
+            "<td>" + districts[i].drunkDriving + "</td>" +
+            "<td>" + districts[i].slightlyInjured + "</td>" +
+            "<td>" + districts[i].seriouslyInjured + "</td>" +
+            "<td>" + districts[i].killedPersons + "</td>" +
+            "<td>" + districts[i].propertyDamage + "</td>";
+        $table.append(tr);
     }
 }

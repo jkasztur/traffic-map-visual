@@ -147,12 +147,66 @@
         <li>
             <div class="side-body">
                 <h5>Statistics</h5>
-                <div id="side-panel-stats"></div>
+                <div id="side-panel-stats">
+                    <!-- Modal Trigger -->
+                    <a class="waves-effect waves-light btn" href="#modal1">Complete Statistics</a>
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th>District</th>
+                            <th>Region</th>
+                        </tr>
+                        <tr>
+                            <th>Property Damage</th>
+                            <td id="stats-property-damage-reg"></td>
+                            <td id="stats-property-damage-dis"></td>
+                        </tr>
+                        <tr>
+                            <th>Drunk Driving</th>
+                            <td id="stats-drunk-driving-reg"></td>
+                            <td id="stats-drunk-driving-dis"></td>
+                        </tr>
+                        <tr>
+                            <th>Silghtly Injured</th>
+                            <td id="stats-slightly-injured-reg"></td>
+                            <td id="stats-slightly-injured-dis"></td>
+                        </tr>
+                        <tr>
+                            <th>Seriously Injured</th>
+                            <td id="stats-seriously-injured-reg"></td>
+                            <td id="stats-seriously-injured-dis"></td>
+                        </tr>
+                        <tr>
+                            <th>Killed Persons</th>
+                            <td id="stats-killed-persons-reg"></td>
+                            <td id="stats-killed-persons-dis"></td>
+                        </tr>
+                        <tr>
+                            <th>Total Accidents</th>
+                            <td id="stats-total-accidents-reg"></td>
+                            <td id="stats-total-accidents-dis"></td>
+                        </tr>
+                    </table>
+                    <!-- Modal Trigger -->
+                    <a class="waves-effect waves-light btn" href="#modal1">Complete Statistics</a>
+                </div>
             </div>
         </li>
     </ul>
     <%-- Button for activating the side panel --%>
     <button data-activates="slide-out" id="sidePanelButton">sidePanelButton</button>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal bottom-sheet">
+        <div class="modal-content">
+            <h4>Statistics</h4>
+            <table id="stats-table">
+            </table>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+        </div>
+    </div>
 
     <div id="map"></div>
 
