@@ -148,8 +148,6 @@
             <div class="side-body">
                 <h5>Statistics</h5>
                 <div id="side-panel-stats">
-                    <!-- Modal Trigger -->
-                    <a class="waves-effect waves-light btn" href="#modal1">Complete Statistics</a>
                     <table>
                         <tr>
                             <th></th>

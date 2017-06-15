@@ -47,6 +47,10 @@ footer .footer-copyright {
     width: 100%;
 }
 
+.side-nav {
+    height: 100% !important;
+}
+
 .side-head {
     padding: 16px;
     color: white;
