@@ -50,7 +50,7 @@ footer .footer-copyright {
 
 .side-nav {
     height: 100% !important;
-    padding-bottom: 16px !important;
+    padding-bottom: 0px !important;
 }
 
 .side-head {
@@ -172,6 +172,10 @@ footer .footer-copyright {
     width: 70%;
     margin-top: 9px;
     margin-bottom: 8px;
+}
+
+#side-panel-stats {
+    padding-bottom: 16px;
 }
 
 #side-panel-stats table {
