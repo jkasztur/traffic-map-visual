@@ -155,35 +155,34 @@
                             <th>Region</th>
                         </tr>
                         <tr>
-                            <th rowspan="2">Material Damage in 1K of CZK</th>
-                            <td id="stats-property-damage-reg" rowspan="2"></td>
-                            <td id="stats-property-damage-dis" rowspan="2"></td>
+                            <th>Material Damage in 1K of CZK</th>
+                            <td id="stats-property-damage-dis"></td>
+                            <td id="stats-property-damage-reg"></td>
                         </tr>
-                        <tr></tr>
                         <tr>
                             <th>Drunk Driving</th>
-                            <td id="stats-drunk-driving-reg"></td>
                             <td id="stats-drunk-driving-dis"></td>
+                            <td id="stats-drunk-driving-reg"></td>
                         </tr>
                         <tr>
                             <th>Silghtly Injured Persons</th>
-                            <td id="stats-slightly-injured-reg"></td>
                             <td id="stats-slightly-injured-dis"></td>
+                            <td id="stats-slightly-injured-reg"></td>
                         </tr>
                         <tr>
                             <th>Seriously Injured Persons</th>
-                            <td id="stats-seriously-injured-reg"></td>
                             <td id="stats-seriously-injured-dis"></td>
+                            <td id="stats-seriously-injured-reg"></td>
                         </tr>
                         <tr>
                             <th>Killed Persons</th>
-                            <td id="stats-killed-persons-reg"></td>
                             <td id="stats-killed-persons-dis"></td>
+                            <td id="stats-killed-persons-reg"></td>
                         </tr>
                         <tr>
                             <th>Total Accidents</th>
-                            <td id="stats-total-accidents-reg"></td>
                             <td id="stats-total-accidents-dis"></td>
+                            <td id="stats-total-accidents-reg"></td>
                         </tr>
                     </table>
                     <!-- Modal Trigger -->

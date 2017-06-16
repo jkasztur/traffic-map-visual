@@ -17,10 +17,9 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementsByTagName('head')[0].appendChild(google_js);
 
         updated = moment().valueOf();
+
         // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
-        $('.modal').modal({
-            startingTop: '20%'
-        });
+        $('.modal').modal();
 
         createStatisticsTable();
     }
@@ -73,6 +72,12 @@ function centerCallback(results, status) {
         return;
     }
     centerMap(results[0].geometry.location)
+}
+
+function addMarkers(reports) {
+    for (var i = 0; i < reports.length; ++i) {
+        addMarker(reports[i]);
+    }
 }
 
 function addMarker(item) {
@@ -196,7 +201,7 @@ function createWeatherContent(item) {
 function createStatisticsContent(item) {
     var regionStatistics = getStatisticsForRegion(item.region);
     var districtStatistics = getStatisticsForDistrict(item.district);
-
+    console.log(regionStatistics);
     if (regionStatistics !== null) {
         $('#stats-property-damage-reg').text(Math.round(regionStatistics.propertyDamage));
         $('#stats-drunk-driving-reg').text(regionStatistics.drunkDriving);
@@ -204,6 +209,13 @@ function createStatisticsContent(item) {
         $('#stats-seriously-injured-reg').text(regionStatistics.seriouslyInjured);
         $('#stats-killed-persons-reg').text(regionStatistics.killedPersons);
         $('#stats-total-accidents-reg').text(regionStatistics.totalAccidents);
+    } else {
+        $('#stats-property-damage-reg').empty();
+        $('#stats-drunk-driving-reg').empty();
+        $('#stats-slightly-injured-reg').empty();
+        $('#stats-seriously-injured-reg').empty();
+        $('#stats-killed-persons-reg').empty();
+        $('#stats-total-accidents-reg').empty();
     }
 
     if (districtStatistics !== null) {
@@ -213,6 +225,13 @@ function createStatisticsContent(item) {
         $('#stats-seriously-injured-dis').text(districtStatistics.seriouslyInjured);
         $('#stats-killed-persons-dis').text(districtStatistics.killedPersons);
         $('#stats-total-accidents-dis').text(districtStatistics.totalAccidents);
+    } else {
+        $('#stats-property-damage-dis').empty();
+        $('#stats-drunk-driving-dis').empty();
+        $('#stats-slightly-injured-dis').empty();
+        $('#stats-seriously-injured-dis').empty();
+        $('#stats-killed-persons-dis').empty();
+        $('#stats-total-accidents-dis').empty();
     }
 }
 
@@ -233,15 +252,11 @@ function parseText(text) {
     return parsedText;
 }
 
-function addMarkers(reports) {
-    for (var i = 0; i < reports.length; ++i) {
-        addMarker(reports[i]);
-    }
-}
-
 function getStatisticsForRegion(region) {
+    console.log(region);
     if ("undefined" !== typeof regions) {
         for (var i = 0; i < regions.length; ++i) {
+            console.log(regions[i]);
             if (regions[i].name === region) {
                 return regions[i];
             }

@@ -226,6 +226,13 @@ footer .footer-copyright {
     text-align: center;
 }
 
+.modal {
+    top: 50% !important;
+    max-height: 50% !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+}
+
 #stats-table td, #stats-table th {
     border: 1px black solid;
     text-align: center;
