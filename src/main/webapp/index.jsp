@@ -146,7 +146,7 @@
         </li>
         <li>
             <div class="side-body">
-                <h5>Statistics</h5>
+                <h5>Statistics of Traffic Accidents</h5>
                 <div id="side-panel-stats">
                     <table>
                         <tr>
@@ -155,22 +155,23 @@
                             <th>Region</th>
                         </tr>
                         <tr>
-                            <th>Property Damage</th>
-                            <td id="stats-property-damage-reg"></td>
-                            <td id="stats-property-damage-dis"></td>
+                            <th rowspan="2">Material Damage in 1K of CZK</th>
+                            <td id="stats-property-damage-reg" rowspan="2"></td>
+                            <td id="stats-property-damage-dis" rowspan="2"></td>
                         </tr>
+                        <tr></tr>
                         <tr>
                             <th>Drunk Driving</th>
                             <td id="stats-drunk-driving-reg"></td>
                             <td id="stats-drunk-driving-dis"></td>
                         </tr>
                         <tr>
-                            <th>Silghtly Injured</th>
+                            <th>Silghtly Injured Persons</th>
                             <td id="stats-slightly-injured-reg"></td>
                             <td id="stats-slightly-injured-dis"></td>
                         </tr>
                         <tr>
-                            <th>Seriously Injured</th>
+                            <th>Seriously Injured Persons</th>
                             <td id="stats-seriously-injured-reg"></td>
                             <td id="stats-seriously-injured-dis"></td>
                         </tr>
@@ -186,7 +187,8 @@
                         </tr>
                     </table>
                     <!-- Modal Trigger -->
-                    <a class="waves-effect waves-light btn" href="#modal1">Complete Statistics</a>
+                    <a id="modal-trigger" class="waves-effect waves-light btn" href="#modal1">Show Complete
+                        Statistics</a>
                 </div>
             </div>
         </li>
@@ -197,7 +199,7 @@
     <!-- Modal Structure -->
     <div id="modal1" class="modal bottom-sheet">
         <div class="modal-content">
-            <h4>Statistics</h4>
+            <h4>Statistics of Traffic Accidents</h4>
             <table id="stats-table">
             </table>
         </div>

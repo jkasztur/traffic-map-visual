@@ -220,4 +220,15 @@ footer .footer-copyright {
     margin-left: 2px;
 }
 
+#modal-trigger {
+    margin: auto;
+    display: block;
+    text-align: center;
+}
+
+#stats-table td, #stats-table th {
+    border: 1px black solid;
+    text-align: center;
+}
+
 
