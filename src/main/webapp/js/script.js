@@ -51,7 +51,7 @@ function centerMap(location) {
 
 // Function called on submission of search form
 function doSearch() {
-    var stringRequest = document.getElementById("search_field").value;
+    var stringRequest = document.getElementById("search-field").value;
     var request = {
         location: map.getCenter(),
         query: stringRequest
@@ -201,7 +201,7 @@ function createWeatherContent(item) {
 function createStatisticsContent(item) {
     var regionStatistics = getStatisticsForRegion(item.region);
     var districtStatistics = getStatisticsForDistrict(item.district);
-    console.log(regionStatistics);
+
     if (regionStatistics !== null) {
         $('#stats-property-damage-reg').text(Math.round(regionStatistics.propertyDamage));
         $('#stats-drunk-driving-reg').text(regionStatistics.drunkDriving);
@@ -210,12 +210,12 @@ function createStatisticsContent(item) {
         $('#stats-killed-persons-reg').text(regionStatistics.killedPersons);
         $('#stats-total-accidents-reg').text(regionStatistics.totalAccidents);
     } else {
-        $('#stats-property-damage-reg').empty();
-        $('#stats-drunk-driving-reg').empty();
-        $('#stats-slightly-injured-reg').empty();
-        $('#stats-seriously-injured-reg').empty();
-        $('#stats-killed-persons-reg').empty();
-        $('#stats-total-accidents-reg').empty();
+        $('#stats-property-damage-reg').text('-');
+        $('#stats-drunk-driving-reg').text('-');
+        $('#stats-slightly-injured-reg').text('-');
+        $('#stats-seriously-injured-reg').text('-');
+        $('#stats-killed-persons-reg').text('-');
+        $('#stats-total-accidents-reg').text('-');
     }
 
     if (districtStatistics !== null) {
@@ -226,12 +226,12 @@ function createStatisticsContent(item) {
         $('#stats-killed-persons-dis').text(districtStatistics.killedPersons);
         $('#stats-total-accidents-dis').text(districtStatistics.totalAccidents);
     } else {
-        $('#stats-property-damage-dis').empty();
-        $('#stats-drunk-driving-dis').empty();
-        $('#stats-slightly-injured-dis').empty();
-        $('#stats-seriously-injured-dis').empty();
-        $('#stats-killed-persons-dis').empty();
-        $('#stats-total-accidents-dis').empty();
+        $('#stats-property-damage-dis').text('-');
+        $('#stats-drunk-driving-dis').text('-');
+        $('#stats-slightly-injured-dis').text('-');
+        $('#stats-seriously-injured-dis').text('-');
+        $('#stats-killed-persons-dis').text('-');
+        $('#stats-total-accidents-dis').text('-');
     }
 }
 
@@ -253,10 +253,8 @@ function parseText(text) {
 }
 
 function getStatisticsForRegion(region) {
-    console.log(region);
     if ("undefined" !== typeof regions) {
         for (var i = 0; i < regions.length; ++i) {
-            console.log(regions[i]);
             if (regions[i].name === region) {
                 return regions[i];
             }

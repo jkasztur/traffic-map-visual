@@ -2,7 +2,6 @@
 <%@ page import="cz.muni.fi.pb138.trafficmap.utils.TrafficReportsBuilder" %>
 
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
-
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8"/>
@@ -32,8 +31,8 @@
                 <div class="col s12 l5">
                     <form onsubmit="doSearch();return false">
                         <div class="input-field">
-                            <input id="search_field" type="search" placeholder="Search on map..." required>
-                            <label class="label-icon search-icons" for="search_field">
+                            <input id="search-field" type="search" placeholder="Search on map..." required>
+                            <label class="label-icon search-icons" for="search-field">
                                 <button id="submit-button" type="submit">
                                     <i class="material-icons">search</i>
                                 </button>
@@ -151,42 +150,42 @@
                     <table>
                         <tr>
                             <th></th>
-                            <th>District</th>
-                            <th>Region</th>
+                            <th class="center-align">District</th>
+                            <th class="center-align">Region</th>
                         </tr>
                         <tr>
                             <th>Material Damage in 1K of CZK</th>
-                            <td id="stats-property-damage-dis"></td>
-                            <td id="stats-property-damage-reg"></td>
+                            <td id="stats-property-damage-dis" class="center-align"></td>
+                            <td id="stats-property-damage-reg" class="center-align"></td>
                         </tr>
                         <tr>
                             <th>Drunk Driving</th>
-                            <td id="stats-drunk-driving-dis"></td>
-                            <td id="stats-drunk-driving-reg"></td>
+                            <td id="stats-drunk-driving-dis" class="center-align"></td>
+                            <td id="stats-drunk-driving-reg" class="center-align"></td>
                         </tr>
                         <tr>
                             <th>Silghtly Injured Persons</th>
-                            <td id="stats-slightly-injured-dis"></td>
-                            <td id="stats-slightly-injured-reg"></td>
+                            <td id="stats-slightly-injured-dis" class="center-align"></td>
+                            <td id="stats-slightly-injured-reg" class="center-align"></td>
                         </tr>
                         <tr>
                             <th>Seriously Injured Persons</th>
-                            <td id="stats-seriously-injured-dis"></td>
-                            <td id="stats-seriously-injured-reg"></td>
+                            <td id="stats-seriously-injured-dis" class="center-align"></td>
+                            <td id="stats-seriously-injured-reg" class="center-align"></td>
                         </tr>
                         <tr>
                             <th>Killed Persons</th>
-                            <td id="stats-killed-persons-dis"></td>
-                            <td id="stats-killed-persons-reg"></td>
+                            <td id="stats-killed-persons-dis" class="center-align"></td>
+                            <td id="stats-killed-persons-reg" class="center-align"></td>
                         </tr>
                         <tr>
                             <th>Total Accidents</th>
-                            <td id="stats-total-accidents-dis"></td>
-                            <td id="stats-total-accidents-reg"></td>
+                            <td id="stats-total-accidents-dis" class="center-align"></td>
+                            <td id="stats-total-accidents-reg" class="center-align"></td>
                         </tr>
                     </table>
                     <!-- Modal Trigger -->
-                    <a id="modal-trigger" class="waves-effect waves-light btn" href="#modal1">Show Complete
+                    <a id="modal-trigger" class="waves-effect waves-light btn light-blue" href="#modal1">Show Complete
                         Statistics</a>
                 </div>
             </div>
@@ -198,12 +197,12 @@
     <!-- Modal Structure -->
     <div id="modal1" class="modal bottom-sheet">
         <div class="modal-content">
-            <h4>Statistics of Traffic Accidents</h4>
+            <div id="modal-header">
+                <h4>Statistics of Traffic Accidents</h4>
+                <a href="#!" class="modal-action modal-close waves-effect"><i class="material-icons">clear</i></a>
+            </div>
             <table id="stats-table">
             </table>
-        </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
         </div>
     </div>
 

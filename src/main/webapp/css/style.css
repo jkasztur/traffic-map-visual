@@ -50,6 +50,7 @@ footer .footer-copyright {
 
 .side-nav {
     height: 100% !important;
+    padding-bottom: 16px !important;
 }
 
 .side-head {
@@ -173,6 +174,11 @@ footer .footer-copyright {
     margin-bottom: 8px;
 }
 
+#side-panel-stats table {
+    margin-bottom: 8px;
+    width: 96%;
+}
+
 #max-min-temp {
     color: #878787;
     line-height: 10%;
@@ -224,6 +230,7 @@ footer .footer-copyright {
     margin: auto;
     display: block;
     text-align: center;
+    width: 96%;
 }
 
 .modal {
@@ -233,9 +240,20 @@ footer .footer-copyright {
     padding-right: 16px !important;
 }
 
+#modal-header {
+    width: 100%;
+}
+
+#modal-header h4 {
+    float: left;
+}
+
+#modal-header a {
+    float: right;
+    color: grey;
+}
+
 #stats-table td, #stats-table th {
     border: 1px black solid;
     text-align: center;
 }
-
-
