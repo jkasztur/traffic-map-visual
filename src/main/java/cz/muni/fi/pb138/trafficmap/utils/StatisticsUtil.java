@@ -21,6 +21,9 @@ public final class StatisticsUtil {
 
 	private static Document doc;
 
+	/**
+	 * Sets the statistic data file to be used in evaluateExpression method
+	 */
 	static {
 		File raw = new File(StatisticsUtil.class.getClassLoader().getResource("raw_statistic_data.xml").getFile());
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -61,6 +64,11 @@ public final class StatisticsUtil {
 		return Double.valueOf(evaluateExpression("//udaj[uze = '" + regionId + "'][6]/hod"));
 	}
 
+	/**
+	 * Evaluates the given XPath expression and returns the response
+	 * @param exp  XPath expression
+	 * @return response of XPath expression
+	 */
 	private static String evaluateExpression(String exp) {
 		XPathFactory xPathfactory = XPathFactory.newInstance();
 		XPath xpath = xPathfactory.newXPath();
