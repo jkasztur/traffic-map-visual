@@ -1,7 +1,5 @@
 package cz.muni.fi.pb138.trafficmap.utils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -16,6 +14,7 @@ import com.google.maps.errors.ApiException;
 
 import cz.muni.fi.pb138.trafficmap.models.GpsCoords;
 import cz.muni.fi.pb138.trafficmap.models.TrafficReport;
+import lombok.extern.slf4j.Slf4j;
 import net.aksingh.owmjapis.CurrentWeather;
 
 import javax.xml.xpath.XPath;
@@ -37,13 +36,17 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by Matej on 4.5.2017.
  */
+@Slf4j
 public class TrafficReportsBuilder {
-    private final static Logger log = LoggerFactory.getLogger(TrafficReportsBuilder.class);
 
     private static List<TrafficReport> reportList = null;
 
     private static Long lastUpdated = null;
 
+	/**
+     * Returns traffic accident reports.
+     * @return list with reports
+     */
     public static List<TrafficReport> getReports() {
         if (shouldUpdate()) {
             reportList = updateReports();
@@ -51,6 +54,10 @@ public class TrafficReportsBuilder {
         return reportList;
     }
 
+	/**
+     * Creates new List class with all traffic accident reports
+     * @return list with reports
+     */
     private static List<TrafficReport> updateReports() {
         log.info("Generating new reports.");
         List<TrafficReport> reports = new ArrayList<>();
@@ -99,6 +106,10 @@ public class TrafficReportsBuilder {
         return reports;
     }
 
+	/**
+     * Returns all traffic reports as JSON String
+     * @return
+     */
     public static String getJSONReports() {
         String result = null;
         List<TrafficReport> reports = getReports();
@@ -124,6 +135,10 @@ public class TrafficReportsBuilder {
         return result;
     }
 
+	/**
+     * Updates the reports every 30 minutes.
+     * @return true if was last updated more than 30 minutes ago, false otherwise.
+     */
     private static boolean shouldUpdate() {
 
         if (reportList == null) {

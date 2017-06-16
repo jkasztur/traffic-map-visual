@@ -10,16 +10,38 @@ import cz.muni.fi.pb138.trafficmap.models.GpsCoords;
 
 import java.io.IOException;
 
+/**
+ * Utility class for working with locations.
+ *
+ * @author jkasztur, mato5
+ */
 public class GeocodingUtils {
 
     private static final String GEO_API_KEY = "AIzaSyAgFM0vs-RoDGMqK_ND7G15acMEiweAj0U";
 
+	/**
+     * Uses google search to get location from given string.
+     * @param request string to search
+     * @return GPS coordinates
+     * @throws InterruptedException
+     * @throws ApiException
+     * @throws IOException
+     */
     public static GpsCoords getCoordsFromString(String request) throws InterruptedException, ApiException, IOException {
         GeoApiContext context = new GeoApiContext().setApiKey(GEO_API_KEY);
         GeocodingResult[] results = GeocodingApi.geocode(context, request).await();
         return new GpsCoords(results[0].geometry.location.lng, results[0].geometry.location.lat);
     }
 
+	/**
+     * Returns district from the given location.
+     * @param lon longitude
+     * @param lat latitude
+     * @return found district
+     * @throws InterruptedException
+     * @throws ApiException
+     * @throws IOException
+     */
     public static String getDistrictFromCoords(double lon, double lat) throws InterruptedException, ApiException, IOException {
         String result = null;
         GeoApiContext context = new GeoApiContext().setApiKey(GEO_API_KEY);
@@ -37,6 +59,15 @@ public class GeocodingUtils {
         return result;
     }
 
+    /**
+     * Returns region from the given location.
+     * @param lon longitude
+     * @param lat latitude
+     * @return found region
+     * @throws InterruptedException
+     * @throws ApiException
+     * @throws IOException
+     */
     public static String getRegionFromCoords(double lon, double lat) throws InterruptedException, ApiException, IOException {
         String result = null;
         GeoApiContext context = new GeoApiContext().setApiKey(GEO_API_KEY);
@@ -53,6 +84,4 @@ public class GeocodingUtils {
         }
         return result;
     }
-
-
 }

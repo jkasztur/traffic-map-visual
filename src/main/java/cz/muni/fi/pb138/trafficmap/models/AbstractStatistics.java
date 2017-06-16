@@ -3,6 +3,11 @@ package cz.muni.fi.pb138.trafficmap.models;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Abstract class containing all statistical data
+ *
+ * @author jkasztur
+ */
 public abstract class AbstractStatistics {
 
 	@Getter
