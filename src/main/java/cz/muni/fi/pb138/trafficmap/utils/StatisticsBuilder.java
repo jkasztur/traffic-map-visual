@@ -48,6 +48,11 @@ public class StatisticsBuilder {
 			regions.add(region);
 		}
 		log.info("Found {} regions.", regions.size());
+		final String republicId = "p90";
+		final Region republic = new Region(republicId);
+		setStatisticInfo(republicId, republic);
+		regions.add(republic);
+		log.info("Added total info.");
 
 		return regions;
 	}
