@@ -266,47 +266,46 @@ function getStatisticsForDistrict(district) {
 function createStatisticsTable() {
     var $table = $('#stats-table');
 
-    var tr = document.createElement("tr");
-    tr.innerHTML = "<th>Regions</th>" +
-        "<th>Total Accidents</th>" +
-        "<th>Drunk Driving</th>" +
-        "<th>Slightly Injured Persons</th>" +
-        "<th>Seriously Injured Persons</th>" +
-        "<th>Killed Persons</th>" +
-        "<th>Material Damage in 1K of CZK</th>";
-    $table.append(tr);
+    $table.append(createHeaderTableRow("Country"));
+    $table.append(createDataTableRow(regions[regions.length - 1]));
 
-    for (var i = 0; i < regions.length; ++i) {
-        tr = document.createElement("tr");
-        tr.innerHTML = "<td>" + regions[i].name + "</td>" +
-            "<td>" + regions[i].totalAccidents + "</td>" +
-            "<td>" + regions[i].drunkDriving + "</td>" +
-            "<td>" + regions[i].slightlyInjured + "</td>" +
-            "<td>" + regions[i].seriouslyInjured + "</td>" +
-            "<td>" + regions[i].killedPersons + "</td>" +
-            "<td>" + Math.round(regions[i].propertyDamage) + "</td>";
-        $table.append(tr);
+    $table.append(createHeaderTableRow("Regions"));
+    for (var i = 0; i < regions.length - 1; ++i) {
+        $table.append(createDataTableRow(regions[i]));
     }
 
-    tr = document.createElement("tr");
-    tr.innerHTML = "<th>Districts</th>" +
-        "<th>Total Accidents</th>" +
-        "<th>Drunk Driving</th>" +
-        "<th>Slightly Injured Persons</th>" +
-        "<th>Seriously Injured Persons</th>" +
-        "<th>Killed Persons</th>" +
-        "<th>Material Damage in 1K of CZK</th>";
-    $table.append(tr);
-
+    $table.append(createHeaderTableRow("Districts"));
     for (var i = 0; i < districts.length; ++i) {
-        tr = document.createElement("tr");
-        tr.innerHTML = "<td>" + districts[i].name + "</td>" +
-            "<td>" + districts[i].totalAccidents + "</td>" +
-            "<td>" + districts[i].drunkDriving + "</td>" +
-            "<td>" + districts[i].slightlyInjured + "</td>" +
-            "<td>" + districts[i].seriouslyInjured + "</td>" +
-            "<td>" + districts[i].killedPersons + "</td>" +
-            "<td>" + Math.round(districts[i].propertyDamage) + "</td>";
-        $table.append(tr);
+        $table.append(createDataTableRow(districts[i]));
     }
+}
+
+function createDataTableRow(data) {
+    if (data !== null) {
+        var tr = document.createElement("tr");
+        tr.innerHTML = "<td>" + data.name + "</td>" +
+            "<td>" + data.totalAccidents + "</td>" +
+            "<td>" + data.drunkDriving + "</td>" +
+            "<td>" + data.slightlyInjured + "</td>" +
+            "<td>" + data.seriouslyInjured + "</td>" +
+            "<td>" + data.killedPersons + "</td>" +
+            "<td>" + Math.round(data.propertyDamage) + "</td>";
+
+        return tr;
+    }
+
+    return null;
+}
+
+function createHeaderTableRow(name) {
+    var tr = document.createElement("tr");
+    tr.innerHTML = "<th>" + name + "</th>" +
+        "<th>Total Accidents</th>" +
+        "<th>Drunk Driving</th>" +
+        "<th>Slightly Injured Persons</th>" +
+        "<th>Seriously Injured Persons</th>" +
+        "<th>Killed Persons</th>" +
+        "<th>Material Damage in 1K of CZK</th>";
+
+    return tr;
 }
