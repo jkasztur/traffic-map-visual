@@ -5,6 +5,8 @@ import net.aksingh.owmjapis.CurrentWeather;
 import java.time.ZonedDateTime;
 
 /**
+ * Object containing all data about the traffic accident.
+ *
  * Created by Matej on 4.5.2017.
  */
 public class TrafficReport {
