@@ -19,7 +19,9 @@ public class GeocodingUtils {
 
     private static final String GEO_API_KEY = "AIzaSyAgFM0vs-RoDGMqK_ND7G15acMEiweAj0U";
 
-	/**
+    private static GeoApiContext context = null;
+
+    /**
      * Uses google search to get location from given string.
      * @param request string to search
      * @return GPS coordinates
@@ -28,12 +30,12 @@ public class GeocodingUtils {
      * @throws IOException
      */
     public static GpsCoords getCoordsFromString(String request) throws InterruptedException, ApiException, IOException {
-        GeoApiContext context = new GeoApiContext().setApiKey(GEO_API_KEY);
+        setContext();
         GeocodingResult[] results = GeocodingApi.geocode(context, request).await();
         return new GpsCoords(results[0].geometry.location.lng, results[0].geometry.location.lat);
     }
 
-	/**
+    /**
      * Returns district from the given location.
      * @param lon longitude
      * @param lat latitude
@@ -44,7 +46,7 @@ public class GeocodingUtils {
      */
     public static String getDistrictFromCoords(double lon, double lat) throws InterruptedException, ApiException, IOException {
         String result = null;
-        GeoApiContext context = new GeoApiContext().setApiKey(GEO_API_KEY);
+        setContext();
         GeocodingResult[] results = GeocodingApi.reverseGeocode(context, new LatLng(lat, lon)).language("cs").await();
         for (int i = 0; i < results.length; i++) {
             for (int j = 0; j < results[i].addressComponents.length; j++) {
@@ -70,7 +72,7 @@ public class GeocodingUtils {
      */
     public static String getRegionFromCoords(double lon, double lat) throws InterruptedException, ApiException, IOException {
         String result = null;
-        GeoApiContext context = new GeoApiContext().setApiKey(GEO_API_KEY);
+        setContext();
         GeocodingResult[] results = GeocodingApi.reverseGeocode(context, new LatLng(lat, lon)).language("cs").await();
         for (int i = 0; i < results.length; i++) {
             for (int j = 0; j < results[i].addressComponents.length; j++) {
@@ -83,5 +85,11 @@ public class GeocodingUtils {
             }
         }
         return result;
+    }
+
+    private static void setContext() {
+        if(context == null) {
+            context = new GeoApiContext().setApiKey(GEO_API_KEY);
+        }
     }
 }
