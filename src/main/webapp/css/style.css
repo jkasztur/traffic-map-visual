@@ -22,6 +22,7 @@ footer .footer-copyright {
     height: 10px;
     margin-top: -20px;
     margin-bottom: -5px;
+    min-height: 45px !important;
 }
 
 .brand-logo {
@@ -45,6 +46,11 @@ footer .footer-copyright {
 #map {
     height: 100%;
     width: 100%;
+}
+
+.side-nav {
+    height: 100% !important;
+    padding-bottom: 0px !important;
 }
 
 .side-head {
@@ -168,6 +174,15 @@ footer .footer-copyright {
     margin-bottom: 8px;
 }
 
+#side-panel-stats {
+    padding-bottom: 16px;
+}
+
+#side-panel-stats table {
+    margin-bottom: 8px;
+    width: 96%;
+}
+
 #max-min-temp {
     color: #878787;
     line-height: 10%;
@@ -195,24 +210,54 @@ footer .footer-copyright {
 }
 
 .icon-humidity {
-    background: url("/resources/icons/humidity.png") no-repeat left center;
+    background: url("../resources/icons/humidity.png") no-repeat left center;
     background-size: 20px;
     padding: 16px 14px 5px;
     margin-left: 5px;
 }
 
 .icon-wind {
-    background: url("/resources/icons/wind.png") no-repeat left center;
+    background: url("../resources/icons/wind.png") no-repeat left center;
     background-size: 24px;
     padding: 14px 14px 5px;
     margin-left: 4px;
 }
 
 .icon-pressure {
-    background: url("/resources/icons/barometer.png") no-repeat left center;
+    background: url("../resources/icons/barometer.png") no-repeat left center;
     background-size: 24px;
     padding: 8px 15px 3px;
     margin-left: 2px;
 }
 
+#modal-trigger {
+    margin: auto;
+    display: block;
+    text-align: center;
+    width: 96%;
+}
 
+.modal {
+    top: 50% !important;
+    max-height: 50% !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+}
+
+#modal-header {
+    width: 100%;
+}
+
+#modal-header h4 {
+    float: left;
+}
+
+#modal-header a {
+    float: right;
+    color: grey;
+}
+
+#stats-table td, #stats-table th {
+    border: 1px black solid;
+    text-align: center;
+}

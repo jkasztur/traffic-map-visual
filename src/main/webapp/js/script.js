@@ -17,6 +17,11 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementsByTagName('head')[0].appendChild(google_js);
 
         updated = moment().valueOf();
+
+        // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+        $('.modal').modal();
+
+        createStatisticsTable();
     }
 });
 
@@ -31,7 +36,7 @@ function initMap() {
             maxWidth: 350
         });
 
-        addMarkers(items);
+        addMarkers(reports);
     });
     placesService = new google.maps.places.PlacesService(map);
 }
@@ -46,10 +51,10 @@ function centerMap(location) {
 
 // Function called on submission of search form
 function doSearch() {
-    var stringRequest = document.getElementById("search_field").value;
+    var stringRequest = document.getElementById("search-field").value;
     var request = {
-       location: map.getCenter(),
-       query: stringRequest
+        location: map.getCenter(),
+        query: stringRequest
     };
 
     placesService.textSearch(request, centerCallback);
@@ -62,11 +67,17 @@ function centerCallback(results, status) {
         return;
     }
 
-   if (results.length == 0) {
-      Materialize.toast('Nothing found.', 2000)
-         return;
-   }
-   centerMap(results[0].geometry.location)
+    if (results.length === 0) {
+        Materialize.toast('Nothing found.', 2000)
+        return;
+    }
+    centerMap(results[0].geometry.location)
+}
+
+function addMarkers(reports) {
+    for (var i = 0; i < reports.length; ++i) {
+        addMarker(reports[i]);
+    }
 }
 
 function addMarker(item) {
@@ -188,7 +199,40 @@ function createWeatherContent(item) {
 }
 
 function createStatisticsContent(item) {
-    // TODO create statistics content
+    var regionStatistics = getStatisticsForRegion(item.region);
+    var districtStatistics = getStatisticsForDistrict(item.district);
+
+    if (regionStatistics !== null) {
+        $('#stats-property-damage-reg').text(Math.round(regionStatistics.propertyDamage));
+        $('#stats-drunk-driving-reg').text(regionStatistics.drunkDriving);
+        $('#stats-slightly-injured-reg').text(regionStatistics.slightlyInjured);
+        $('#stats-seriously-injured-reg').text(regionStatistics.seriouslyInjured);
+        $('#stats-killed-persons-reg').text(regionStatistics.killedPersons);
+        $('#stats-total-accidents-reg').text(regionStatistics.totalAccidents);
+    } else {
+        $('#stats-property-damage-reg').text('-');
+        $('#stats-drunk-driving-reg').text('-');
+        $('#stats-slightly-injured-reg').text('-');
+        $('#stats-seriously-injured-reg').text('-');
+        $('#stats-killed-persons-reg').text('-');
+        $('#stats-total-accidents-reg').text('-');
+    }
+
+    if (districtStatistics !== null) {
+        $('#stats-property-damage-dis').text(Math.round(districtStatistics.propertyDamage));
+        $('#stats-drunk-driving-dis').text(districtStatistics.drunkDriving);
+        $('#stats-slightly-injured-dis').text(districtStatistics.slightlyInjured);
+        $('#stats-seriously-injured-dis').text(districtStatistics.seriouslyInjured);
+        $('#stats-killed-persons-dis').text(districtStatistics.killedPersons);
+        $('#stats-total-accidents-dis').text(districtStatistics.totalAccidents);
+    } else {
+        $('#stats-property-damage-dis').text('-');
+        $('#stats-drunk-driving-dis').text('-');
+        $('#stats-slightly-injured-dis').text('-');
+        $('#stats-seriously-injured-dis').text('-');
+        $('#stats-killed-persons-dis').text('-');
+        $('#stats-total-accidents-dis').text('-');
+    }
 }
 
 function parseText(text) {
@@ -208,8 +252,73 @@ function parseText(text) {
     return parsedText;
 }
 
-function addMarkers(items) {
-    for (var i = 0; i < items.length; ++i) {
-        addMarker(items[i]);
+function getStatisticsForRegion(region) {
+    if ("undefined" !== typeof regions) {
+        for (var i = 0; i < regions.length; ++i) {
+            if (regions[i].name === region) {
+                return regions[i];
+            }
+        }
+
+        return null;
     }
+}
+
+function getStatisticsForDistrict(district) {
+    if ("undefined" !== typeof districts) {
+        for (var i = 0; i < districts.length; ++i) {
+            if (districts[i].name === district) {
+                return districts[i];
+            }
+        }
+
+        return null;
+    }
+}
+
+function createStatisticsTable() {
+    var $table = $('#stats-table');
+
+    $table.append(createHeaderTableRow("Country"));
+    $table.append(createDataTableRow(regions[regions.length - 1]));
+
+    $table.append(createHeaderTableRow("Regions"));
+    for (var i = 0; i < regions.length - 1; ++i) {
+        $table.append(createDataTableRow(regions[i]));
+    }
+
+    $table.append(createHeaderTableRow("Districts"));
+    for (var i = 0; i < districts.length; ++i) {
+        $table.append(createDataTableRow(districts[i]));
+    }
+}
+
+function createDataTableRow(data) {
+    if (data !== null) {
+        var tr = document.createElement("tr");
+        tr.innerHTML = "<td>" + data.name + "</td>" +
+            "<td>" + data.totalAccidents + "</td>" +
+            "<td>" + data.drunkDriving + "</td>" +
+            "<td>" + data.slightlyInjured + "</td>" +
+            "<td>" + data.seriouslyInjured + "</td>" +
+            "<td>" + data.killedPersons + "</td>" +
+            "<td>" + Math.round(data.propertyDamage) + "</td>";
+
+        return tr;
+    }
+
+    return null;
+}
+
+function createHeaderTableRow(name) {
+    var tr = document.createElement("tr");
+    tr.innerHTML = "<th>" + name + "</th>" +
+        "<th>Total Accidents</th>" +
+        "<th>Drunk Driving</th>" +
+        "<th>Slightly Injured Persons</th>" +
+        "<th>Seriously Injured Persons</th>" +
+        "<th>Killed Persons</th>" +
+        "<th>Material Damage in 1K of CZK</th>";
+
+    return tr;
 }
