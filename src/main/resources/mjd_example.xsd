@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="MJD" type="MJDType"/>
+    <xs:complexType name="MEVTType">
+        <xs:sequence>
+            <xs:element type="TMCEType" name="TMCE"/>
+            <xs:element type="OTXTType" name="OTXT"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="SBEGType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="x"/>
+                <xs:attribute type="xs:string" name="y"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="STELType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="el_code"/>
+                <xs:attribute type="xs:string" name="el_dir"/>
+                <xs:attribute type="xs:string" name="order"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="OTXTType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="language"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="MTXTType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="language"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="EVIType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="eventcode" use="optional"/>
+                <xs:attribute type="xs:string" name="eventorder" use="optional"/>
+                <xs:attribute type="xs:string" name="quantifier" use="optional"/>
+                <xs:attribute type="xs:string" name="updateclass" use="optional"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="MSGType">
+        <xs:sequence>
+            <xs:element type="MTIMEType" name="MTIME"/>
+            <xs:element type="MTXTType" name="MTXT"/>
+            <xs:element type="MEVTType" name="MEVT"/>
+            <xs:element type="MLOCType" name="MLOC"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="id"/>
+        <xs:attribute type="xs:string" name="version"/>
+    </xs:complexType>
+    <xs:complexType name="MTIMEType">
+        <xs:sequence>
+            <xs:element type="TGENType" name="TGEN"/>
+            <xs:element type="TSTAType" name="TSTA"/>
+            <xs:element type="TSTOType" name="TSTO"/>
+            <xs:element type="TUPDType" name="TUPD"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="format"/>
+    </xs:complexType>
+    <xs:complexType name="SENDType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="x"/>
+                <xs:attribute type="xs:string" name="y"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="MJDType">
+        <xs:sequence>
+            <xs:element type="MSGType" name="MSG"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="count"/>
+    </xs:complexType>
+    <xs:complexType name="TUPDType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="date"/>
+                <xs:attribute type="xs:string" name="time"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="TSTOType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="date"/>
+                <xs:attribute type="xs:string" name="time"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="MLOCType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="TXPL"/>
+            <xs:element type="SNTLType" name="SNTL"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="PrimaryLocalization"/>
+    </xs:complexType>
+    <xs:complexType name="TGENType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="date"/>
+                <xs:attribute type="xs:string" name="time"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="SNTLType">
+        <xs:sequence>
+            <xs:element type="SBEGType" name="SBEG"/>
+            <xs:element type="SENDType" name="SEND"/>
+            <xs:element type="STEPType" name="STEP"/>
+            <xs:element type="STELType" name="STEL"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="coordsystem"/>
+        <xs:attribute type="xs:string" name="count"/>
+    </xs:complexType>
+    <xs:complexType name="TSTAType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="date"/>
+                <xs:attribute type="xs:string" name="time"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="STEPType">
+        <xs:simpleContent>
+            <xs:extension base="xs:string">
+                <xs:attribute type="xs:string" name="begin"/>
+                <xs:attribute type="xs:string" name="end"/>
+            </xs:extension>
+        </xs:simpleContent>
+    </xs:complexType>
+    <xs:complexType name="TMCEType">
+        <xs:sequence>
+            <xs:element type="EVIType" name="EVI" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+        <xs:attribute type="xs:string" name="authorized"/>
+        <xs:attribute type="xs:string" name="credibility"/>
+        <xs:attribute type="xs:string" name="directionality"/>
+        <xs:attribute type="xs:string" name="diversion"/>
+        <xs:attribute type="xs:string" name="duration"/>
+        <xs:attribute type="xs:string" name="timescale"/>
+        <xs:attribute type="xs:string" name="urgency"/>
+    </xs:complexType>
+</xs:schema>
