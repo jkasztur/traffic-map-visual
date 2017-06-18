@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="weather_root" type="weather_rootType"/>
+    <xs:complexType name="coordType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="lon"/>
+            <xs:element type="xs:string" name="lat"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="weatherType">
+        <xs:sequence>
+            <xs:element name="icon">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="09d"/>
+                        <xs:enumeration value="11d"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="description">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="light intensity shower rain"/>
+                        <xs:enumeration value="thunderstorm"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="main">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="Rain"/>
+                        <xs:enumeration value="Thunderstorm"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="id">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="520"/>
+                        <xs:enumeration value="211"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="weather_rootType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="dt"/>
+            <xs:element type="coordType" name="coord"/>
+            <xs:element type="xs:string" name="visibility"/>
+            <xs:element type="weatherType" name="weather" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element type="xs:string" name="name"/>
+            <xs:element type="xs:string" name="cod"/>
+            <xs:element type="mainType" name="main"/>
+            <xs:element type="cloudsType" name="clouds"/>
+            <xs:element type="xs:string" name="id"/>
+            <xs:element type="sysType" name="sys"/>
+            <xs:element type="xs:string" name="base"/>
+            <xs:element type="windType" name="wind"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="sysType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="country"/>
+            <xs:element type="xs:string" name="sunrise"/>
+            <xs:element type="xs:string" name="sunset"/>
+            <xs:element type="xs:string" name="id"/>
+            <xs:element type="xs:string" name="type"/>
+            <xs:element type="xs:string" name="message"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="cloudsType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="all"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="windType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="deg"/>
+            <xs:element type="xs:string" name="speed"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="mainType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="temp"/>
+            <xs:element type="xs:string" name="temp_min"/>
+            <xs:element type="xs:string" name="humidity"/>
+            <xs:element type="xs:string" name="pressure"/>
+            <xs:element type="xs:string" name="temp_max"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
