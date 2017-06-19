@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE book PUBLIC '-//OASIS//DTD DocBook XML V4.5//EN' 
+          'http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd'>
+<book lang="sk">
+	
+	<bookinfo>
+		<title>PB138 - Záverečná správa k projektu: Vizualizácia dopravných informácií</title>
+		<author>
+			<firstname>Róbert</firstname>
+			<surname>Ďuriančík</surname>
+		</author>
+	</bookinfo>
+
+	<preface>
+        <title>Úvod</title>
+        <para>
+            Cieľom tohto projektu bolo zobraziť aktuálne dopravné nehody a uzávierky, doplnené štatistikou nehodovosti v danom kraji a aktuálnym počasím v mieste nehody na mape. Mojou hlavnou úlohou bolo navrhnúť dizajn aplikácie a zobraziť v nej získané dáta v pre uživatela prívetivej forme. Okrem toho som implementoval triedu pre stiahnutie dát o dopravných nehodách a uzávierkach v xml formáte.
+        </para>
+	</preface>
+
+    <chapter>
+        <title>Stiahnutie dát o dopravných nehodách a uzávierkach v xml formáte</title>
+        <para>
+            Pre stiahnutie potrebných dát som implementoval triedu 'TrafficReportsDataDownloader' so statickou metódou 'getTrafficReports()'. Táto metóda stiahne xml súbor s aktuálnymi informáciami a vráti NodeList s elementami MJD z príslušného dokumentu. Element MJD predstavuje jednu dopravnú situáciu.
+        </para>
+    </chapter>
+
+    <chapter>
+        <title>Dizajn aplikácie</title>
+        <para>
+            Front-end aplikácie je tvorený kombináciou jazykov HŤML, CSS a JavaScript. Aplikácia je ladená do Material Design od Google, na čo som použil front-end framework Materialize. Do hornej časti som umiesnil navigačný panel s menom aplikácie a vyhľadávacím panelom. Stred aplikácie vypĺňa mapa a do spodnej časti som umiestnil panel s copyrightom. Okrem týchto prvkov z frameworku je v aplikácii použité vysunovacie menu (side-panel) modifikované pre zobrazovanie dát o dopravnej udalosti a modálne vysúvacie okno pre zobrazenie štatistickej tabuľky.
+        </para>
+        <section>
+            <title>Mapa</title>
+            <para>
+                Pre zobrazenie dát na mape sme sa nakoniec rozhodli použiť Google Maps API. Mapa sa inicializuje pomocou JavaScriptových funkcií, ktoré som pridal do súboru 'script.js', po načítaní obsahu stránky. Po načítaní obsahu stránky sa taktiež zavolá funkcia, ktorá naplní tabuľku štatistiky nehodovosti získanými dátami.
+            </para>
+        </section>
+        <section>
+            <title>Zobrazenie získaných dát</title>
+            <para>
+                Pre každú dopravnú udalosť som vytvoril marker a umiestnil ho na mapu v mieste udalosti. Po kliknutí na marker sa otvorí jeho info window, ktorého obsah napĺňam dynamicky informáciami o dopravnej udalosti pomocou JavaScriptu, ešte pred zobrazením samotného okna. 
+            </para>
+            <para>
+                Info window obsahuje informácie o aktuálnom počasí v mieste nehody a stručný popis od kedy, do kedy bude trvať udalosť, kde a čo sa stalo. V spodnej časti okna sa nachádza tlačidlo "SHOW DETAILS", na ktoré keď uživateľ klikne, zavolá sa ďalšia funkcia, ktorá naplní obsah side-panelu potrebnými dátami.
+            </para>
+            <para>
+                V side-panely som informácie o udalosti rozdelil do piatich častí - Popis, Miesto, Čas, Počasie a Štatistika nehodovosti v danom kraji a okrese. Do spodnej časti side-panelu som umiestnil tlačidlo "SHOW COMPLETE STATISTICS", ktoré vysunie spodný panel s tabuľkou kompletnej štatistiky nehodovosti v Českej republike, príslušných krajoch a okresoch.
+            </para>
+        </section>
+    </chapter>
+</book>
