@@ -38,9 +38,8 @@
             Design od Google, na čo som použil front-end framework <ulink url="http://materializecss.com/">
             Materialize</ulink>. Do hornej časti som umiesnil navigačný panel s menom aplikácie a vyhľadávacím panelom.
             Stred aplikácie vypĺňa mapa a do spodnej časti som umiestnil panel s copyrightom. Okrem týchto prvkov z
-            frameworku je v aplikácii použité vysunovacie menu (side-panel) modifikované pre zobrazovanie dát o
-            dopravnej udalosti a modálne vysúvacie okno pre zobrazenie štatistickej
-            tabuľky.
+            frameworku je v aplikácii použité vysúvacie menu (bočný panel) modifikované pre zobrazovanie dát o
+            dopravnej udalosti a spodné vysúvacie okno pre zobrazenie štatistickej tabuľky.
         </para>
         <section>
             <title>Mapa</title>
@@ -56,17 +55,17 @@
             <title>Zobrazenie získaných dát</title>
             <para>
                 Pre každú dopravnú udalosť som vytvoril marker a umiestnil ho na mapu v mieste udalosti. Po kliknutí na
-                marker sa otvorí jeho info window, ktorého obsah napĺňam dynamicky informáciami o dopravnej udalosti
+                marker sa otvorí jeho informačné okno, ktorého obsah napĺňam dynamicky informáciami o dopravnej udalosti
                 pomocou JavaScriptu, ešte pred zobrazením samotného okna.
             </para>
             <para>
-                Info window obsahuje informácie o aktuálnom počasí v mieste nehody a stručný popis od kedy, do kedy bude
+                Informačné okno obsahuje informácie o aktuálnom počasí v mieste nehody a stručný popis od kedy, do kedy bude
                 trvať udalosť, kde a čo sa stalo. V spodnej časti okna sa nachádza tlačidlo "SHOW DETAILS", na ktoré keď
-                uživateľ klikne, zavolá sa ďalšia funkcia, ktorá naplní obsah side-panelu potrebnými dátami.
+                uživateľ klikne, zavolá sa ďalšia funkcia, ktorá naplní obsah bočného panelu potrebnými dátami.
             </para>
             <para>
-                V side-panely som informácie o udalosti rozdelil do piatich častí - Popis, Miesto, Čas, Počasie a
-                Štatistika nehodovosti v danom kraji a okrese. Do spodnej časti side-panelu som umiestnil tlačidlo "SHOW
+                V bočnom panely som informácie o udalosti rozdelil do piatich častí - Popis, Miesto, Čas, Počasie a
+                Štatistika nehodovosti v danom kraji a okrese. Do spodnej časti panelu som umiestnil tlačidlo "SHOW
                 COMPLETE STATISTICS", ktoré vysunie spodný panel s tabuľkou kompletnej štatistiky nehodovosti v Českej
                 republike, príslušných krajoch a okresoch.
             </para>
