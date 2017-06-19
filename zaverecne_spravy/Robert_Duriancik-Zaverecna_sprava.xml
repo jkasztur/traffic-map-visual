@@ -34,7 +34,7 @@
     <chapter>
         <title>Dizajn aplikácie</title>
         <para>
-            Front-end aplikácie je tvorený kombináciou jazykov HŤML, CSS a JavaScript. Aplikácia je ladená do Material
+            Front-end aplikácie je tvorený kombináciou jazykov HTML, CSS a JavaScript. Aplikácia je ladená do Material
             Design od Google, na čo som použil front-end framework <ulink url="http://materializecss.com/">
             Materialize</ulink>. Do hornej časti som umiesnil navigačný panel s menom aplikácie a vyhľadávacím panelom.
             Stred aplikácie vypĺňa mapa a do spodnej časti som umiestnil panel s copyrightom. Okrem týchto prvkov z
