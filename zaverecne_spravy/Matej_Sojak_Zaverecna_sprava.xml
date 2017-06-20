@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+        "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<book lang="sk">
+
+    <bookinfo>
+        <title>PB138 - Záverečná správa: Vizualizácia dopravných informácií</title>
+        <author>
+            <firstname>Matej</firstname>
+            <surname>Sojak</surname>
+            <email>433294@mail.muni.cz</email>
+        </author>
+    </bookinfo>
+
+    <preface>
+        <title>Úvod</title>
+        <para>
+            Oficiálnym zadaním tohto projektu je vizualizácia aktuálnych dopravných nehôd a uzávierok, tak ako ich
+            poskytuje oficiálny zdroj Polície ČR. Táto vizualizácia mala byť ďalej rozšírená o štatistiku nehodovosti v
+            danom kraji a tiež aktuálne počasie na mieste nehody.
+            Mojou úlohou bolo ďalšie spracovanie údajov z už stiahnutých nehôd a počasia a pridanie XML schémy.
+        </para>
+    </preface>
+
+    <chapter>
+        <title>Počasie</title>
+        <para>
+            Aby bolo možné ďalej pracovať so stiahnutým počasím, bolo nutné ho namapovať na JSON objekt. Tento problém
+            sa vyriešil tak, že bola vytvorená trieda WeatherSerializer, ktorá slúžila ako serializer, ktorý
+            namapoval objekt CurrentWeather získaný od OpenWeatherMap API na objekt vo formáte JSON.
+            Na túto serializáciu som využil FasterXML/Jackson API.
+            <ulink url="https://github.com/FasterXML/jackson">
+                <citetitle>Jackson Project Home</citetitle>
+            </ulink>
+        </para>
+    </chapter>
+
+    <chapter>
+        <title>Nehody</title>
+        <para>
+            Aktuálne nehody bolo potrebné uložiť vo vhodnom formáte, preto bolo nutné vytvoriť Java objekt
+            TrafficReport,
+            ktorý obsahuje všetky dôležité informácie požadované zo zadania tejto úlohy a následne všetky tieto nehody
+            namapovať na zoznam objektov typu TrafficReport. Na mapovanie dát z formátu XML na Java objekty som využil
+            DOM a hlavne XPath podobne ako v prvej domácej úlohe.
+        </para>
+        <para>
+            Ďalšie spracovanie vyžadovalo premapovanie zoznamu objektov TrafficReport do formátu JSON, podobne ako
+            v prípade objektu CurrentWeather. Jediný rozdiel bol, že v tomto prípade nebolo treba vytvoriť vlastný
+            serializer. Taktiež aby bolo možné pracovať s údajmi vo formáte typu dátum, bolo potrebné pridať
+            serializer pre tento dátový typ.
+        </para>
+    </chapter>
+
+    <chapter>
+        <title>XML Schema</title>
+        <para>
+            Na záver som pridal XML schému pre súbory mjd_example.xml a weather_example.xml, tieto súbory sú vzorky
+            zobrazujúce hlásenie o nehode a aktuálne počasie vo formáte v akom sme ich pre tento projekt aj používali.
+        </para>
+    </chapter>
+</book>
