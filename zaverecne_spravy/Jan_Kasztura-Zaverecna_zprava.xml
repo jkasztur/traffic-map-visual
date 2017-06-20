@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+		"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<book lang="cs">
+
+	<bookinfo>
+		<title>PB138 - Záverečná zpráva k projektu: Vizualizace dopravních informací</title>
+		<author>
+			<firstname>Jan</firstname>
+			<surname>Kasztura</surname>
+			<email>422563@mail.muni.cz</email>
+		</author>
+	</bookinfo>
+
+	<preface>
+		<title>Úvod</title>
+		<para>
+			Cílem tohoto projektu bylo zobrazení dopravních informací v České Republice na mapovém podkladu,
+			doplněných o aktuální počasí v místě nehody a statitiku nehod v daném kraji a okresu. Mým úkolem v projektu
+			bylo zpracování počasí, stažení statistiky a uložení do vhodného formátu. Vedlejšími úkoly pak bylo přídání
+			deploymentu do různých kontejnerů a vyhledávání na mapě.
+		</para>
+	</preface>
+
+	<chapter>
+		<title>Počasí</title>
+		<para>
+			K získání aktuálního počasí pro danou polohu jsem použil <ulink url="https://openweathermap.org/"><citetitle>OpenWeatherMap API</citetitle></ulink>.
+			K tomu jsem přistupoval v Javě přes <ulink url="https://github.com/akapribot/OWM-JAPIs/"><citetitle>OWM-JAPIs</citetitle></ulink>.
+		</para>
+		<para>
+			Vytvořil jsem WeatherUtils class, která se pak dále používá v TrafficReportsBuilder pro přidání dat k markerům na mapě.
+		</para>
+	</chapter>
+
+	<chapter>
+		<title>Statistika</title>
+		<para>
+			Prvním problémem na který jsem narazil, bylo to že statistické data nešly vždy stáhnout z webových stránek Českého statistického úřadu.
+			Vyřešil jsem to tak, že jsem uložil celý stažený dokument do src/main/resources/raw_statistic_data.xml.
+		</para>
+		<para>
+			V StatisticsUtil jsem vytvořil pomocné funkce getTotalAccidents, getDrunkDriving atd.,
+			které berou String argument regionId. Kraje mají id p1 až p14, okresy p15 až p89 a celá republika pak p90. V xml dokumentu vybírám hodnoty pomocí XPath.
+			Vše se pak ukládá do tříd Region a District které rošiřují AbstractStatistics. Vytvořil jsem různé třídy pro kraje i okresy, aby se lépe orientovalo.
+		</para>
+	</chapter>
+
+	<chapter>
+		<title>Vyhledávání</title>
+		<para>
+			Pro vyhledávání jsem se rozhodl použít Javasript Google Places API. Jelikož i pro mapu používám Google Maps, byla to jasná volba.
+			Vyhledávat je možné přes názvy lokací i přes souřadnice. Pokud se si nenajde, program hlásí 'Nothing found.'
+		</para>
+	</chapter>
+
+	<chapter>
+		<title>Deployment</title>
+		<para>
+			Aplikaci je možno deployovat do svou kontejnerů - Apache Tomcat a Apache Karaf.
+		</para>
+		<para>
+			Pro Tomcat je použit tomcat7-maven-plugin a stačí spustit "mvn clean install tomcat7:deploy" z příkazové řádky.
+			Dodatečné informace jak upravit Tomcat jsou popsány v README.
+		</para>
+		<para>
+			Pro Karaf jsem použil karaf-maven-plugin a je potřeba spustit "mvn clean install -Pkaraf".
+			Jako v předchozím případě je nutné lehce upravit Karaf.
+		</para>
+	</chapter>
+
+	<chapter>
+		<title>Komunikace a vývoj</title>
+		<para>
+			Pro komunikaci v týmu jsme používali skupinový chat na Facebooku.
+			Pro sdílení důležitých nebo zajímavých materiálu jsme později ještě vytvořili uzavřenou skupinu.
+		</para>
+		<para>
+			Všechny pull requesty do master větve kontroloval někdo jiný než ten, kdo ten kód vytvořil.
+			Přidal jsem i Travis CI plugin do githubu, aby se na větší chyby přišlo rovnou.
+			Tento plugin u každého pull requestu spustí "mvn clean install" a pokud neprojde, tak okamžitě ohlásí chybu.
+		</para>
+	</chapter>
+
+</book>
